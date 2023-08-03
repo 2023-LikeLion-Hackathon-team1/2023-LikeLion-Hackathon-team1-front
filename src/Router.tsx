@@ -1,15 +1,18 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import Category from './routes/Category';
+import Main from './routes/Main';
 
 const Page = styled.div`
   display: flex;
   justify-content: center;
-  background-color: lightgray;
+  background-color: black;
 `;
 
 const Center = styled.div`
+  max-width: 100vw;
   min-width: 390px;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: white;
 `;
 
@@ -20,7 +23,10 @@ function Router() {
         <Page>
           <Center>
             <Route exact path="/">
-              <div> Hello </div>
+              <Main />
+            </Route>
+            <Route exact path="/category">
+              <Category />
             </Route>
           </Center>
         </Page>
