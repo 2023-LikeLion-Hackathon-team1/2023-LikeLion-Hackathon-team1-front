@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
@@ -22,22 +22,32 @@ const BottomBar = styled.div`
   background-color: white;
 `;
 
+const StyledLink = styled(Link)<{ active: boolean }>`
+  color: ${(props) => (props.active ? 'black' : 'lightgray')};
+`;
+
 export default function MenuBar() {
+  const [activeIcon, setActiveIcon] = useState<string>('home');
+
+  const handleIconClick = (icon: string) => {
+    setActiveIcon(icon);
+  };
+
   return (
     <>
       <BottomBar>
-        <Link to="/">
+        <StyledLink to="/" active={activeIcon === 'home'} onClick={() => handleIconClick('home')}>
           <HomeOutlinedIcon />
-        </Link>
-        <Link to="/todo">
+        </StyledLink>
+        <StyledLink to="/todo" active={activeIcon === 'bookmark'} onClick={() => handleIconClick('bookmark')}>
           <BookmarkBorderOutlinedIcon />
-        </Link>
-        <Link to="/todo">
+        </StyledLink>
+        <StyledLink to="/search" active={activeIcon === 'search'} onClick={() => handleIconClick('search')}>
           <SearchOutlinedIcon />
-        </Link>
-        <Link to="/todo">
+        </StyledLink>
+        <StyledLink to="/profile" active={activeIcon === 'profile'} onClick={() => handleIconClick('profile')}>
           <PersonOutlineOutlinedIcon />
-        </Link>
+        </StyledLink>
       </BottomBar>
     </>
   );
