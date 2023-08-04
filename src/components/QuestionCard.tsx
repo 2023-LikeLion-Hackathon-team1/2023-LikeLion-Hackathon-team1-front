@@ -16,7 +16,7 @@ const questions: Question[] = [
     content: '아무리 찾아봐도.. 어디서 레퍼런스 찾기가 쉽지 않네요ㅜㅜㅜㅜ 어디서 참고하시나요? 아시는 분 알려주세요!',
     questionMark: 10,
     answerNum: 3,
-    postTime: new Date('2021-10-10 10:10:10'),
+    postTime: new Date('2023-08-04 10:10:10'),
   },
   {
     questionId: 2,
@@ -27,7 +27,7 @@ const questions: Question[] = [
     content: '웹 개발을 처음 시작하는데 초보자 친화적인 프레임워크로 리액트와 뷰 중 어떤 것을 선택해야 할까요?',
     questionMark: 5,
     answerNum: 7,
-    postTime: new Date('2022-05-15 15:30:45'),
+    postTime: new Date('2023-08-05 01:30:45'),
   },
   {
     questionId: 3,
@@ -219,9 +219,9 @@ export default function QuestionCard({ questionId }: QuestionCardProps) {
       });
       timeAgoStr = formattedDate.replace(/\//g, '/');
     } else if (hoursAgo >= 1) {
-      timeAgoStr = `${hoursAgo} 시간 전`;
+      timeAgoStr = `${hoursAgo}시간 전`;
     } else {
-      timeAgoStr = `${minutesAgo} 분 전`;
+      timeAgoStr = `${minutesAgo}분 전`;
     }
 
     setTimeAgo(timeAgoStr);
