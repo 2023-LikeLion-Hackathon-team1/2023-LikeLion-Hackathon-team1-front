@@ -21,7 +21,7 @@ export default function FloatingButton() {
       <Float>
         {/* Use the CustomFab instead of the Fab */}
         <CustomFab aria-label="add">
-          <Add />
+          <Add style={{ color: 'white' }} />
         </CustomFab>
       </Float>
     </>

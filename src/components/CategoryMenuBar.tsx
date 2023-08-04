@@ -17,6 +17,7 @@ const CategoryMenuBarWrapper = styled.div`
   /* 스크롤바 스타일 */
   ::-webkit-scrollbar {
     width: 0; /* 스크롤바 너비를 0으로 설정하여 스크롤바를 숨김 */
+    background-color: transparent; /* 스크롤바 배경을 투명으로 설정하여 숨김 */
   }
 
   ::-webkit-scrollbar-thumb {
@@ -34,6 +35,7 @@ const CategoryButton = styled.div<CategoryButtonProps>`
   border-radius: 100px;
   cursor: pointer;
   height: 40px;
+  font-size: 12px;
   min-width: fit-content;
   display: flex;
   align-items: center;
@@ -58,27 +60,6 @@ interface CategoryButtonProps {
   isSelected: boolean;
 }
 
-const StyledFormControl = styled(FormControl)`
-  margin: 1px;
-  min-width: 120px;
-  height: 40px; /* Set the desired height */
-  border: none; /* Remove the border */
-`;
-
-const StyledSelect = styled(Select)`
-  width: fit-content;
-  background-color: lightgray;
-  border: none; /* Remove the border */
-  border-radius: 100px;
-  padding: 8px;
-  height: 40px; /* Set the desired height */
-
-  &:focus {
-    background-color: lightgray; // 선택 시 빨간색이 나타나지 않도록 함
-    border: none; /* Remove the border on focus */
-  }
-`;
-
 export default function CategoryMenuBar() {
   const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -99,7 +80,7 @@ export default function CategoryMenuBar() {
   return (
     <>
       <CategoryMenuBarWrapper>
-        <FormControl sx={{ m: 1, minWidth: 100, border: 'none' }} size="small">
+        <FormControl sx={{ m: 1, minWidth: 'fit-content' }} size="small">
           <Select
             labelId="demo-select-small-label"
             id="demo-select-small"
@@ -108,33 +89,59 @@ export default function CategoryMenuBar() {
             style={{
               width: 'fit-content',
               height: '40px',
-              backgroundColor: 'lightgray',
-              border: 'none',
+              backgroundColor: theme.palette.mono.gray2,
               borderRadius: '100px',
-              // padding: '8px',
+              fontSize: '12px',
+            }}
+            sx={{
+              boxShadow: 'none',
+              '.MuiOutlinedInput-notchedOutline': { border: 'none !important' },
             }}
           >
-            <MenuItem value="업로드">업로드</MenuItem>
-            <MenuItem value="조회수">조회수</MenuItem>
-            <MenuItem value="궁금해요">궁금해요</MenuItem>
+            <MenuItem
+              value="업로드"
+              sx={{
+                fontSize: '12px',
+                '&.Mui-selected': {
+                  backgroundColor: `${theme.palette.mono.gray2}`,
+                  '&:hover': {
+                    backgroundColor: `${theme.palette.mono.gray2}`,
+                  },
+                },
+              }}
+            >
+              업로드
+            </MenuItem>
+            <MenuItem
+              value="조회수"
+              sx={{
+                fontSize: '12px',
+                '&.Mui-selected': {
+                  backgroundColor: `${theme.palette.mono.gray2}`,
+                  '&:hover': {
+                    backgroundColor: `${theme.palette.mono.gray2}`,
+                  },
+                },
+              }}
+            >
+              조회수
+            </MenuItem>
+            <MenuItem
+              value="궁금해요"
+              sx={{
+                fontSize: '12px',
+                '&.Mui-selected': {
+                  backgroundColor: `${theme.palette.mono.gray2}`,
+                  '&:hover': {
+                    backgroundColor: `${theme.palette.mono.gray2}`,
+                  },
+                },
+              }}
+            >
+              궁금해요
+            </MenuItem>
           </Select>
         </FormControl>
-
-        {/* <CategoryMenuBarWrapper>
-          <StyledFormControl size="small">
-            <StyledSelect
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={choose}
-              onChange={handleChange}
-            >
-              <MenuItem value="업로드">업로드</MenuItem>
-              <MenuItem value="조회수">조회수</MenuItem>
-              <MenuItem value="궁금해요">궁금해요</MenuItem>
-            </StyledSelect>
-          </StyledFormControl>
-        </CategoryMenuBarWrapper>
-        <p>선택된 카테고리: {selectedCategory}</p> */}
 
         {categoryList.map((category) => (
           <CategoryButton
