@@ -147,9 +147,6 @@ export default function Main() {
           <QuestionCard questionId={question.questionId} />
         ))}
       </Container>
-      {/* <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
-        {fab.icon}
-      </Fab> */}
       <FloatingButton />
       <MenuBar />
     </>
