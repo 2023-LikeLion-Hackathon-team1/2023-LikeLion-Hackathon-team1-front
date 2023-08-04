@@ -2,6 +2,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Category from './routes/Category';
 import Main from './routes/Main';
+import QuestionDetail from './routes/QuestionDetail';
 
 const Page = styled.div`
   display: flex;
@@ -27,6 +28,9 @@ function Router() {
             </Route>
             <Route exact path="/category">
               <Category />
+            </Route>
+            <Route exact path="/:categoryId/:questionId">
+              <QuestionDetail />
             </Route>
           </Center>
         </Page>
