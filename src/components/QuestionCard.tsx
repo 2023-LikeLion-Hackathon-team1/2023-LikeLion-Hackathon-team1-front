@@ -71,6 +71,7 @@ const Content = styled.div`
   font-size: 14px;
   color: gray;
   margin-top: 5px;
+  line-height: 1.5;
 `;
 
 const Bottom = styled.div`
