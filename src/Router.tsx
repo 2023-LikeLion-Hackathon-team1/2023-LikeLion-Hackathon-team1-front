@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import Category from './routes/Category';
 import Main from './routes/Main';
 import QuestionDetail from './routes/QuestionDetail';
+import WriteQuestion from './routes/WriteQuestion';
+import SearchCategory from './routes/SearchCategory';
+import Alarm from './routes/Alarm';
+import Bookmark from './routes/Bookmark';
 
 const Page = styled.div`
   display: flex;
@@ -31,6 +35,18 @@ function Router() {
             </Route>
             <Route exact path="/:categoryId/:questionId">
               <QuestionDetail />
+            </Route>
+            <Route exact path="/category/:categoryId/write/:userId">
+              <WriteQuestion />
+            </Route>
+            <Route exact path="/category/:categoryId/search">
+              <SearchCategory />
+            </Route>
+            <Route exact path="/alarm">
+              <Alarm />
+            </Route>
+            <Route exact path="/bookmark">
+              <Bookmark />
             </Route>
           </Center>
         </Page>
