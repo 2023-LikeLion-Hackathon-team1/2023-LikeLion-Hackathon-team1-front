@@ -4,24 +4,20 @@ import { styled } from 'styled-components';
 import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import theme from '../theme';
 
-interface Questions {
-  questionId: number;
+interface Answers {
   categoryId: number;
+  questionId: number;
+  answerId: number;
   userName: string;
   userImg: string;
-  title: string;
   content: string;
-  questionMark: number;
-  answerNum: number;
   postTime: Date;
+  likeNum: number;
+  isChoose: boolean;
 }
-
-interface QuestionCardProps {
-  question: Questions;
-  isSummary: boolean;
-}
-
 const Card = styled.div`
   width: 100vw;
   /* min-width: 100vw; */
@@ -61,17 +57,10 @@ const Time = styled.div`
   color: gray;
 `;
 
-const Title = styled.div`
-  font-size: 14px;
-  font-weight: 500;
-  margin-top: 15px;
-`;
-
 const Content = styled.div`
   font-size: 14px;
   color: gray;
-  margin-top: 5px;
-  line-height: 1.5;
+  margin: 10px 0px;
 `;
 
 const Bottom = styled.div`
@@ -96,21 +85,23 @@ const Response = styled.div`
   color: gray;
   font-size: 12px;
 `;
-const Answer = styled.div``;
+const Like = styled.div`
+  color: ${theme.palette.mono.gray3};
+`;
 
-export default function QuestionCard({ question, isSummary }: QuestionCardProps) {
+export default function AnswerCard({ answer }: { answer: Answers }) {
   const [timeAgo, setTimeAgo] = useState<string>('');
 
   useEffect(() => {
     const currentDate = new Date();
-    const timeDifference = currentDate.getTime() - question.postTime.getTime();
+    const timeDifference = currentDate.getTime() - answer.postTime.getTime();
     const hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60));
     const minutesAgo = Math.floor(timeDifference / (1000 * 60));
     const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
     let timeAgoStr = '';
     if (daysAgo >= 1) {
-      const formattedDate = question.postTime.toLocaleDateString('en-US', {
+      const formattedDate = answer.postTime.toLocaleDateString('en-US', {
         month: '2-digit',
         day: '2-digit',
       });
@@ -122,30 +113,26 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
     }
 
     setTimeAgo(timeAgoStr);
-  }, [question.postTime]);
+  }, [answer.postTime]);
 
   return (
     <Card>
       <Profile>
-        <ProfileImg src={question.userImg} />
+        <ProfileImg src={answer.userImg} />
         <ProfileColumn>
-          <ProfileName>{question.userName}</ProfileName>
+          <ProfileName>{answer.userName}</ProfileName>
           <Time>{timeAgo}</Time>
         </ProfileColumn>
       </Profile>
-      <Title> {question.title} </Title>
-      <Content>
-        {question.content.length > 30 && isSummary === true ? question.content.slice(0, 30) + '...' : question.content}
-      </Content>
+      <Content>{answer.content}</Content>
       <Bottom>
         <Icons>
-          <PsychologyAltOutlinedIcon />
-          <ChatBubbleOutlineIcon />
-          <BookmarkBorderOutlinedIcon />
+          <FavoriteBorderRoundedIcon style={{ width: '20px' }} />
+          <ChatBubbleOutlineIcon style={{ width: '20px' }} />
         </Icons>
         <Response>
-          <Answer>{`궁금해요 ${question.questionMark}개`} </Answer>
-          <Answer>{`답변 ${question.answerNum}개`} </Answer>
+          <Like>{`좋아요 ${answer.likeNum}개`} </Like>
+          <Like>{`답변 ${answer.likeNum}개`} </Like>
         </Response>
       </Bottom>
     </Card>

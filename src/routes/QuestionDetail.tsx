@@ -1,12 +1,9 @@
-import { styled } from 'styled-components';
-import AdCard from '../components/AdCard';
-import Header from '../components/Header';
-import MenuBar from '../components/MenuBar';
-import { Link } from 'react-router-dom';
-import CategoryMenuBar from '../components/CategoryMenuBar';
+import { useParams } from 'react-router-dom';
+import SubHeader from '../components/SubHeader';
 import QuestionCard from '../components/QuestionCard';
-import FloatingButton from '../components/FloatingButton';
-import { Divider } from '@mui/material';
+import { styled } from 'styled-components';
+import AnswerCard from '../components/AnswerCard';
+import AnswerText from '../components/AnswerText';
 
 const questions: Questions[] = [
   {
@@ -124,37 +121,109 @@ interface Questions {
   postTime: Date;
 }
 
-const Container = styled.div`
+const answers: Answers[] = [
+  {
+    categoryId: 1,
+    questionId: 1,
+    answerId: 1,
+    userName: 'gaming_addict',
+    userImg: 'https://picsum.photos/210',
+    content: '이런거 아닐까요? 이런건 어떠세요? 추천드립니다.',
+    postTime: new Date('2021-06-30 22:55:40'),
+    likeNum: 5,
+    isChoose: false,
+  },
+  {
+    categoryId: 1,
+    questionId: 1,
+    answerId: 2,
+    userName: 'user123',
+    userImg: 'https://picsum.photos/211',
+    content: '그럴 수도 있어요. 다만 조심하세요.',
+    postTime: new Date('2022-03-15 08:30:20'),
+    likeNum: 3,
+    isChoose: false,
+  },
+  {
+    categoryId: 2,
+    questionId: 3,
+    answerId: 3,
+    userName: 'expert1',
+    userImg: 'https://picsum.photos/212',
+    content: '성능 최적화를 위한 방법으로...',
+    postTime: new Date('2022-09-28 17:45:10'),
+    likeNum: 10,
+    isChoose: true,
+  },
+  {
+    categoryId: 3,
+    questionId: 4,
+    answerId: 4,
+    userName: 'designer007',
+    userImg: 'https://picsum.photos/213',
+    content: '이런 CSS 트릭을 사용해보세요...',
+    postTime: new Date('2022-11-05 14:10:55'),
+    likeNum: 7,
+    isChoose: false,
+  },
+  {
+    categoryId: 4,
+    questionId: 5,
+    answerId: 5,
+    userName: 'artlover',
+    userImg: 'https://picsum.photos/214',
+    content: '일러스트레이션 작업을 할 때 주의할 점은...',
+    postTime: new Date('2022-12-20 09:30:25'),
+    likeNum: 6,
+    isChoose: false,
+  },
+];
+
+interface Answers {
+  categoryId: number;
+  questionId: number;
+  answerId: number;
+  userName: string;
+  userImg: string;
+  content: string;
+  postTime: Date;
+  likeNum: number;
+  isChoose: boolean;
+}
+
+interface RouteParams {
+  categoryId: string;
+  questionId: string;
+}
+
+const Question = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0px;
 `;
 
-export default function Main() {
-  const current_categoryId = 1;
-  const userId = 1;
+const AnswerList = styled.div``;
+
+export default function QuestionDetail() {
+  const { categoryId, questionId } = useParams<RouteParams>();
+
+  const categoryIdNumber = parseInt(categoryId, 10);
+  const questionIdNumber = parseInt(questionId, 10);
+
   return (
     <>
-      <Header />
-      <Container style={{ paddingTop: '20px' }}>
-        <Link to="/category">
-          <AdCard />
-        </Link>
-      </Container>
-      <CategoryMenuBar />
-      <Container>
-        {questions.map((question) => (
-          <Link to={`/${question.categoryId}/${question.questionId}`} style={{ margin: 0, padding: 0 }}>
-            <QuestionCard question={question} isSummary={true} />
-          </Link>
+      <SubHeader title="질문하기" />
+      <Question>
+        <QuestionCard question={questions[questionIdNumber - 1]} isSummary={false} />
+      </Question>
+      <AnswerList>
+        {answers.map((answer) => (
+          <AnswerCard key={answer.answerId} answer={answer} />
         ))}
-      </Container>
-      <Link to={`/category/${current_categoryId}/write/${userId}`}>
-        <FloatingButton />
-      </Link>
-      <MenuBar />
+      </AnswerList>
+      <AnswerText />
+
+      {/* <div style={{ display: 'block' }}>
+        Question ${categoryId} ${questionId}
+      </div> */}
     </>
   );
 }
