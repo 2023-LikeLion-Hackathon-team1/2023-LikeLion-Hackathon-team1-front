@@ -23,7 +23,7 @@ export default function Header() {
         <Link to="/">
           <Logo src={logo} />
         </Link>
-        <Link to="/todo">
+        <Link to="/alarm">
           <NotificationsNoneOutlinedIcon />
         </Link>
       </TopHeader>
