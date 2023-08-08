@@ -133,6 +133,8 @@ const Container = styled.div`
 `;
 
 export default function Main() {
+  const current_categoryId = 1;
+  const userId = 1;
   return (
     <>
       <Header />
@@ -149,7 +151,9 @@ export default function Main() {
           </Link>
         ))}
       </Container>
-      <FloatingButton />
+      <Link to={`/category/${current_categoryId}/write/${userId}`}>
+        <FloatingButton />
+      </Link>
       <MenuBar />
     </>
   );
