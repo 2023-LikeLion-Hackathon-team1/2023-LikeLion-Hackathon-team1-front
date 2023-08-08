@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import theme from '../theme';
+import { Link } from 'react-router-dom';
 
 const categoryList = [
   { id: 1, name: '🍒 디자인' },
@@ -149,10 +150,12 @@ export default function Category() {
             ))}
           </ButtonsContainer>
           <Result>
-            <SelectButton>
-              다음
-              <Count> {selectedCategories.length === 0 ? '' : `${selectedCategories.length}개`} </Count>
-            </SelectButton>
+            <Link to="/">
+              <SelectButton>
+                다음
+                <Count> {selectedCategories.length === 0 ? '' : `${selectedCategories.length}개`} </Count>
+              </SelectButton>
+            </Link>
           </Result>
         </Container>
       </Slide>
