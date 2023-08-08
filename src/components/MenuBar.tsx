@@ -26,6 +26,12 @@ const StyledLink = styled(Link)<{ active: boolean }>`
   color: ${(props) => (props.active ? 'black' : 'lightgray')};
 `;
 
+const Block = styled.p`
+  display: flex;
+  height: 70px;
+  background-color: white;
+`;
+
 export default function MenuBar() {
   const [activeIcon, setActiveIcon] = useState<string>('home');
 
@@ -35,14 +41,19 @@ export default function MenuBar() {
 
   return (
     <>
+      <Block />
       <BottomBar>
         <StyledLink to="/" active={activeIcon === 'home'} onClick={() => handleIconClick('home')}>
           <HomeOutlinedIcon />
         </StyledLink>
-        <StyledLink to="/todo" active={activeIcon === 'bookmark'} onClick={() => handleIconClick('bookmark')}>
+        <StyledLink to="/bookmark" active={activeIcon === 'bookmark'} onClick={() => handleIconClick('bookmark')}>
           <BookmarkBorderOutlinedIcon />
         </StyledLink>
-        <StyledLink to="/search" active={activeIcon === 'search'} onClick={() => handleIconClick('search')}>
+        <StyledLink
+          to="/category/:categoryId/search"
+          active={activeIcon === 'search'}
+          onClick={() => handleIconClick('search')}
+        >
           <SearchOutlinedIcon />
         </StyledLink>
         <StyledLink to="/profile" active={activeIcon === 'profile'} onClick={() => handleIconClick('profile')}>

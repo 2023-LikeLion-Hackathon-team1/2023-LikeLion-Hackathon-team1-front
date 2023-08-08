@@ -12,9 +12,13 @@ const Header = styled.div`
 `;
 
 export default function SubHeader({ title }: { title: string }) {
+  const handleGoBack = () => {
+    window.history.back(); // 뒤로가기 기능 실행
+  };
+
   return (
     <Header>
-      <ArrowBackIosNewRoundedIcon />
+      <ArrowBackIosNewRoundedIcon onClick={handleGoBack} />
       {title}
       <div />
     </Header>

@@ -25,18 +25,27 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
+const Block = styled.p`
+  display: flex;
+  height: 70px;
+  background-color: white;
+`;
+
 export default function AnswerText() {
   return (
-    <AnswerType>
-      <StyledTextField
-        fullWidth
-        label="답변 작성하기"
-        id="fullWidth"
-        sx={{
-          '& fieldset': { border: 'none' },
-        }}
-        size="small"
-      />
-    </AnswerType>
+    <>
+      <Block />
+      <AnswerType>
+        <StyledTextField
+          fullWidth
+          label="답변 작성하기"
+          id="fullWidth"
+          sx={{
+            '& fieldset': { border: 'none' },
+          }}
+          size="small"
+        />
+      </AnswerType>
+    </>
   );
 }
