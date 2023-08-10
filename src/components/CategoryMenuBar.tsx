@@ -9,7 +9,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 const CategoryMenuBarWrapper = styled.div`
   display: flex;
-  padding-top: 5px;
+  padding: 5px 0px;
   overflow-x: auto;
   width: 100%;
   align-items: center;
@@ -30,7 +30,8 @@ const CategoryMenuBarWrapper = styled.div`
 const CategoryButton = styled.div<CategoryButtonProps>`
   padding: 8px 15px;
   margin-right: 10px;
-  background-color: ${(props) => (props.isSelected ? theme.palette.mono.gray1 : '#ffffff')};
+  color: ${(props) => (props.isSelected ? theme.palette.green.main : 'black')};
+  background-color: ${(props) => (props.isSelected ? theme.palette.green.lightgreen : '#ffffff')};
   border: ${(props) => (props.isSelected ? 'none' : '1px solid lightgray')};
   border-radius: 100px;
   cursor: pointer;
@@ -89,13 +90,18 @@ export default function CategoryMenuBar() {
             style={{
               width: 'fit-content',
               height: '40px',
-              backgroundColor: theme.palette.mono.gray2,
+              // backgroundColor: theme.palette.mono.gray2,
+              border: `1px solid ${theme.palette.green.main}`,
+              color: theme.palette.green.main,
               borderRadius: '100px',
               fontSize: '12px',
             }}
             sx={{
               boxShadow: 'none',
               '.MuiOutlinedInput-notchedOutline': { border: 'none !important' },
+              '.MuiSvgIcon-root ': {
+                fill: `${theme.palette.green.main}`,
+              },
             }}
           >
             <MenuItem
@@ -110,7 +116,7 @@ export default function CategoryMenuBar() {
                 },
               }}
             >
-              업로드
+              업로드순
             </MenuItem>
             <MenuItem
               value="조회수"
@@ -124,7 +130,7 @@ export default function CategoryMenuBar() {
                 },
               }}
             >
-              조회수
+              조회수순
             </MenuItem>
             <MenuItem
               value="궁금해요"
@@ -138,7 +144,7 @@ export default function CategoryMenuBar() {
                 },
               }}
             >
-              궁금해요
+              궁금해요순
             </MenuItem>
           </Select>
         </FormControl>

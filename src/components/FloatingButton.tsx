@@ -1,6 +1,7 @@
 import { Fab } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { styled } from 'styled-components';
+import theme from '../theme';
 
 const Float = styled.div`
   position: fixed;
@@ -9,19 +10,23 @@ const Float = styled.div`
   z-index: 100;
 `;
 
-// Define your custom gray color here
-const CustomFab = styled(Fab)`
-  background-color: gray;
-  /* Add any additional styling you need */
-`;
+// const CustomFab = styled(Fab)`
+//   background-color: ${theme.palette.green.darkgreen};
+// `;
 
 export default function FloatingButton() {
   return (
     <>
       <Float>
-        <CustomFab aria-label="add">
+        <Fab
+          aria-label="add"
+          sx={{
+            backgroundColor: theme.palette.green.darkgreen,
+            color: 'white',
+          }}
+        >
           <Add style={{ color: 'white' }} />
-        </CustomFab>
+        </Fab>
       </Float>
     </>
   );

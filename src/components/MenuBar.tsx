@@ -6,6 +6,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import theme from '../theme';
 
 const BottomBar = styled.div`
   display: grid;
@@ -23,7 +24,7 @@ const BottomBar = styled.div`
 `;
 
 const StyledLink = styled(Link)<{ active: boolean }>`
-  color: ${(props) => (props.active ? 'black' : 'lightgray')};
+  color: ${(props) => (props.active ? theme.palette.green.main : 'lightgray')};
 `;
 
 const Block = styled.p`
