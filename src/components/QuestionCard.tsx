@@ -23,11 +23,14 @@ interface QuestionCardProps {
 }
 
 const Card = styled.div`
-  width: 100vw;
+  width: 95vw;
+  /* margin-bottom: 10px; */
   /* min-width: 100vw; */
   /* height: 140px; */
   /* background-color: lightblue; */
   /* border-top: 1px solid black; */
+  border: 1px solid lightgray;
+  border-radius: 30px;
   border-bottom: 1px solid lightgray;
   padding: 15px 30px;
 `;
@@ -88,6 +91,8 @@ const Icons = styled.div`
   justify-content: flex-start;
   gap: 5px;
   color: gray;
+  /* height: 20px; */
+  font-size: 12px;
 `;
 
 const Response = styled.div`
@@ -139,14 +144,14 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
       </Content>
       <Bottom>
         <Icons>
-          <PsychologyAltOutlinedIcon />
-          <ChatBubbleOutlineIcon />
-          <BookmarkBorderOutlinedIcon />
+          <PsychologyAltOutlinedIcon style={{ width: '16px' }} />
+          3
+          <ChatBubbleOutlineIcon style={{ width: '16px' }} />4
         </Icons>
-        <Response>
+        {/* <Response>
           <Answer>{`궁금해요 ${question.questionMark}개`} </Answer>
           <Answer>{`답변 ${question.answerNum}개`} </Answer>
-        </Response>
+        </Response> */}
       </Bottom>
     </Card>
   );
