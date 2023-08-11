@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+// import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 
 interface Questions {
   questionId: number;
@@ -95,13 +95,13 @@ const Icons = styled.div`
   font-size: 12px;
 `;
 
-const Response = styled.div`
-  display: flex;
-  gap: 5px;
-  color: gray;
-  font-size: 12px;
-`;
-const Answer = styled.div``;
+// const Response = styled.div`
+//   display: flex;
+//   gap: 5px;
+//   color: gray;
+//   font-size: 12px;
+// `;
+// const Answer = styled.div``;
 
 export default function QuestionCard({ question, isSummary }: QuestionCardProps) {
   const [timeAgo, setTimeAgo] = useState<string>('');
