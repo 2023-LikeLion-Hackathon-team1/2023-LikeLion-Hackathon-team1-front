@@ -143,6 +143,7 @@ export default function Category() {
           <ButtonsContainer>
             {categoryList.map((category) => (
               <CategoryButton
+                key={category.id}
                 isSelected={selectedCategories.includes(category.name)}
                 onClick={() => handleCategoryClick(category.name)}
               >

@@ -65,7 +65,7 @@ export default function Alarm() {
       <Container>
         {alarmList.map((alarm) => (
           //   <Link to={`/${.categoryId}/${question.questionId}`} style={{ margin: 0, padding: 0 }}>
-          <AlarmCard alarm={alarm} />
+          <AlarmCard key={alarm.alarmId} alarm={alarm} />
           //   </Link>
         ))}
       </Container>

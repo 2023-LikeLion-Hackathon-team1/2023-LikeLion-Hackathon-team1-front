@@ -148,7 +148,7 @@ export default function Main() {
       <Container>
         {questions.map((question) => (
           <Link to={`/${question.categoryId}/${question.questionId}`} style={{ margin: 0, padding: 0 }}>
-            <QuestionCard question={question} isSummary={true} />
+            <QuestionCard key={question.questionId} question={question} isSummary={true} />
           </Link>
         ))}
       </Container>

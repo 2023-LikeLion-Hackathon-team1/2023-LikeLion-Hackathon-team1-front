@@ -42,7 +42,7 @@ export default function Bookmark() {
     <>
       <SubHeader title="스크랩 보기" />
       {bookmarks.map((bookmark) => (
-        <BookmarkCard bookmark={bookmark} />
+        <BookmarkCard key={bookmark.bookmarkId} bookmark={bookmark} />
       ))}
       <Link to={`/category`}>
         <FloatingButton />
