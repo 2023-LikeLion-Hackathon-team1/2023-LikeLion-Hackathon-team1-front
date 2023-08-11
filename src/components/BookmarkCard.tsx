@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import theme from '../theme';
+import EditSlide from './EditSlide';
 
 interface Bookmark {
   bookmarkId: number;
@@ -36,7 +37,8 @@ export default function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
           <Title> {bookmark.title} </Title>
           <Num> {bookmark.itemNum} questions </Num>
         </div>
-        <MoreHorizIcon />
+        {/* <MoreHorizIcon /> */}
+        <EditSlide />
       </Card>
     </>
   );
