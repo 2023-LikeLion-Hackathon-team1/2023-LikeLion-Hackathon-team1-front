@@ -4,7 +4,7 @@ import SubHeader from '../components/SubHeader';
 import FloatingButton from '../components/FloatingButton';
 import MenuBar from '../components/MenuBar';
 
-const bookmarks: Bookmark[] = [
+const bookmarks: IBookmark[] = [
   {
     bookmarkId: 1,
     userId: 1,
@@ -30,7 +30,7 @@ const bookmarks: Bookmark[] = [
     itemNum: 5,
   },
 ];
-interface Bookmark {
+interface IBookmark {
   bookmarkId: number;
   userId: number;
   title: string;

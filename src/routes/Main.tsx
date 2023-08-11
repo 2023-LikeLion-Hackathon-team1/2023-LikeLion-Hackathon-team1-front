@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import CategoryMenuBar from '../components/CategoryMenuBar';
 import QuestionCard from '../components/QuestionCard';
 import FloatingButton from '../components/FloatingButton';
-import { Divider } from '@mui/material';
+// import { Divider } from '@mui/material';
 
 const questions: Questions[] = [
   {
