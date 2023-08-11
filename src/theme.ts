@@ -2,6 +2,15 @@ import { createTheme, PaletteOptions } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {
+    green: {
+      main: string;
+      darkgreen: string;
+      lightgreen: string;
+    };
+    blue: {
+      main: string;
+      lightblue: string;
+    };
     mono: {
       white: string;
       gray1: string;
@@ -12,20 +21,22 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
-    mono: Palette['mono'];
+    green?: Palette['green'];
+    blue?: Palette['blue'];
+    mono?: Palette['mono'];
   }
 }
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: '#FC441E',
+    green: {
+      main: '#2CE477',
+      darkgreen: '#2ACF6C',
+      lightgreen: '#EAFCF1',
     },
-    secondary: {
-      main: '#FFFF00',
-    },
-    info: {
-      main: '#0000FF',
+    blue: {
+      main: '#71CBFD',
+      lightblue: '#2CE477',
     },
     mono: {
       white: '#FFFFFF',

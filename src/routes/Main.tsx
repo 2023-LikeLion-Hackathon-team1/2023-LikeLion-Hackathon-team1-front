@@ -130,6 +130,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0px;
+  gap: 20px;
 `;
 
 export default function Main() {

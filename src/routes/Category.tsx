@@ -50,6 +50,7 @@ const Slide = styled.div`
 const Title = styled.div`
   font-size: 22px;
   margin-bottom: 10px;
+  color: ${theme.palette.green.main};
 `;
 
 const SubTitle = styled.div`
@@ -74,9 +75,9 @@ const CategoryButton = styled.button<CategoryButtonProps>`
   margin: 5px;
   padding: 10px 20px;
   font-size: 14px;
-  background-color: ${(props) => (props.isSelected ? '#F2F2F2' : '#ffffff')};
+  background-color: ${(props) => (props.isSelected ? '#ffffff' : '#ffffff')};
   color: black;
-  border: ${(props) => (props.isSelected ? 'none' : '1px solid lightgray')};
+  border: ${(props) => (props.isSelected ? `1px solid ${theme.palette.green.main}` : '1px solid lightgray')};
   border-radius: 100px;
   cursor: pointer;
 
@@ -100,7 +101,7 @@ const SelectButton = styled.button`
   margin: 5px;
   padding: 10px 20px;
   font-size: 14px;
-  background-color: ${theme.palette.mono.gray2};
+  background-color: ${theme.palette.green.darkgreen};
   color: white;
   border-radius: 16px;
   border: none;
