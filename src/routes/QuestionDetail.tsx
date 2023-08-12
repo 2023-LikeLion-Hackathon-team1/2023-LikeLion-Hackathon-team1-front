@@ -4,6 +4,7 @@ import QuestionCard from '../components/QuestionCard';
 import { styled } from 'styled-components';
 import AnswerCard from '../components/AnswerCard';
 import AnswerText from '../components/AnswerText';
+import theme from '../theme';
 
 const questions: Questions[] = [
   {
@@ -16,6 +17,7 @@ const questions: Questions[] = [
     questionMark: 10,
     answerNum: 3,
     postTime: new Date('2023-08-04 10:10:10'),
+    isCurious: true,
   },
   {
     questionId: 2,
@@ -27,6 +29,7 @@ const questions: Questions[] = [
     questionMark: 5,
     answerNum: 7,
     postTime: new Date('2023-08-05 01:30:45'),
+    isCurious: false,
   },
   {
     questionId: 3,
@@ -38,6 +41,7 @@ const questions: Questions[] = [
     questionMark: 8,
     answerNum: 12,
     postTime: new Date('2022-09-02 08:20:55'),
+    isCurious: false,
   },
   {
     questionId: 4,
@@ -49,6 +53,7 @@ const questions: Questions[] = [
     questionMark: 7,
     answerNum: 9,
     postTime: new Date('2022-11-20 12:05:30'),
+    isCurious: true,
   },
   {
     questionId: 5,
@@ -61,6 +66,7 @@ const questions: Questions[] = [
     questionMark: 6,
     answerNum: 4,
     postTime: new Date('2022-07-07 17:40:20'),
+    isCurious: true,
   },
   {
     questionId: 6,
@@ -73,6 +79,7 @@ const questions: Questions[] = [
     questionMark: 9,
     answerNum: 11,
     postTime: new Date('2022-12-12 09:15:05'),
+    isCurious: false,
   },
   {
     questionId: 7,
@@ -84,6 +91,7 @@ const questions: Questions[] = [
     questionMark: 8,
     answerNum: 15,
     postTime: new Date('2022-06-30 22:55:40'),
+    isCurious: true,
   },
   {
     questionId: 8,
@@ -95,6 +103,7 @@ const questions: Questions[] = [
     questionMark: 7,
     answerNum: 6,
     postTime: new Date('2023-01-05 11:25:50'),
+    isCurious: true,
   },
   {
     questionId: 9,
@@ -107,6 +116,7 @@ const questions: Questions[] = [
     questionMark: 6,
     answerNum: 8,
     postTime: new Date('2023-04-18 16:30:15'),
+    isCurious: false,
   },
 ];
 interface Questions {
@@ -119,6 +129,7 @@ interface Questions {
   questionMark: number;
   answerNum: number;
   postTime: Date;
+  isCurious: boolean;
 }
 
 const answers: Answers[] = [
@@ -198,6 +209,7 @@ interface RouteParams {
 
 const Question = styled.div`
   display: flex;
+  border-bottom: 1px solid ${theme.palette.mono.gray3};
 `;
 
 const AnswerList = styled.div``;

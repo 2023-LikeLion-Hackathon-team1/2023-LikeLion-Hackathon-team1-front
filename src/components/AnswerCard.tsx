@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-// import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-// import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import theme from '../theme';
 
@@ -52,9 +50,19 @@ const ProfileName = styled.div`
   font-weight: bold;
 `;
 
+const IsChooseMark = styled.div`
+  display: flex;
+  padding: 7px 10px 5px 10px;
+  font-size: 11px;
+  color: ${theme.palette.color.sub};
+  background-color: ${theme.palette.color.blue2};
+  border: 1px solid ${theme.palette.color.sub};
+  border-radius: 15px;
+`;
+
 const Time = styled.div`
   font-size: 10px;
-  color: gray;
+  color: ${theme.palette.mono.gray3};
 `;
 
 const Content = styled.div`
@@ -123,6 +131,7 @@ export default function AnswerCard({ answer }: { answer: Answers }) {
           <ProfileName>{answer.userName}</ProfileName>
           <Time>{timeAgo}</Time>
         </ProfileColumn>
+        {answer.isChoose && <IsChooseMark> 채택 </IsChooseMark>}
       </Profile>
       <Content>{answer.content}</Content>
       <Bottom>

@@ -12,13 +12,13 @@ const AnswerType = styled.div`
   height: 70px;
   background-color: white;
   padding: 15px 30px;
-  border-top: 1px solid ${theme.palette.mono.gray1};
+  border-top: 1px solid ${theme.palette.mono.gray4};
 `;
 
 const StyledTextField = styled(TextField)`
   && {
     border-radius: 100px;
-    background-color: ${theme.palette.mono.gray1};
+    background-color: ${theme.palette.mono.gray4};
   }
   .MuiInputLabel-root {
     display: none; /* Hide the label */

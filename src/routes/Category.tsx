@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// import { useQuery } from 'react-query';
+import { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
 import { Link } from 'react-router-dom';
@@ -50,7 +49,7 @@ const Slide = styled.div`
 const Title = styled.div`
   font-size: 22px;
   margin-bottom: 10px;
-  color: ${theme.palette.green.main};
+  color: ${theme.palette.color.main};
 `;
 
 const SubTitle = styled.div`
@@ -77,7 +76,7 @@ const CategoryButton = styled.button<CategoryButtonProps>`
   font-size: 14px;
   background-color: ${(props) => (props.isSelected ? '#ffffff' : '#ffffff')};
   color: black;
-  border: ${(props) => (props.isSelected ? `1px solid ${theme.palette.green.main}` : '1px solid lightgray')};
+  border: ${(props) => (props.isSelected ? `1px solid ${theme.palette.color.main}` : '1px solid lightgray')};
   border-radius: 100px;
   cursor: pointer;
 
@@ -101,7 +100,7 @@ const SelectButton = styled.button`
   margin: 5px;
   padding: 10px 20px;
   font-size: 14px;
-  background-color: ${theme.palette.green.darkgreen};
+  background-color: ${theme.palette.color.green2};
   color: white;
   border-radius: 16px;
   border: none;

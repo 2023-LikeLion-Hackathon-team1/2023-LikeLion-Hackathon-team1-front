@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import theme from '../theme';
 
 const Header = styled.div`
   width: 100vw;
@@ -18,7 +19,7 @@ export default function SubHeader({ title }: { title: string }) {
 
   return (
     <Header>
-      <ArrowBackIosNewRoundedIcon onClick={handleGoBack} />
+      <ArrowBackIosNewRoundedIcon onClick={handleGoBack} style={{ color: `${theme.palette.color.main}` }} />
       {title}
       <div />
     </Header>

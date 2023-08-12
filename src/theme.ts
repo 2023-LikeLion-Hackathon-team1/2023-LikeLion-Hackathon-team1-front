@@ -2,48 +2,47 @@ import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {
-    green: {
+    color: {
       main: string;
-      darkgreen: string;
-      lightgreen: string;
-    };
-    blue: {
-      main: string;
-      lightblue: string;
+      green2: string;
+      green3: string;
+      green4: string;
+      sub: string;
+      blue2: string;
     };
     mono: {
       white: string;
       gray1: string;
       gray2: string;
       gray3: string;
+      gray4: string;
       black: string;
     };
   }
 
   interface PaletteOptions {
-    green?: Palette['green'];
-    blue?: Palette['blue'];
+    color?: Palette['color'];
     mono?: Palette['mono'];
   }
 }
 
 const theme = createTheme({
   palette: {
-    green: {
+    color: {
       main: '#2CE477',
-      darkgreen: '#2ACF6C',
-      lightgreen: '#EAFCF1',
-    },
-    blue: {
-      main: '#71CBFD',
-      lightblue: '#2CE477',
+      green2: '#2ACF6C',
+      green3: '#C5DF9D',
+      green4: '#EAFCF1',
+      sub: '#71CBFD',
+      blue2: '#C8EBFE',
     },
     mono: {
+      black: '#1A1C19',
+      gray1: '#1A1C19',
+      gray2: '#8D948C',
+      gray3: '#CFD1D5',
+      gray4: '#F1F2F1',
       white: '#FFFFFF',
-      gray1: '#F2F2F2',
-      gray2: '#D9D9D9',
-      gray3: '#828282',
-      black: '#000000',
     },
   },
 });

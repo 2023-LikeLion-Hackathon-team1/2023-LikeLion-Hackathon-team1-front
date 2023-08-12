@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import CategoryMenuBar from '../components/CategoryMenuBar';
 import QuestionCard from '../components/QuestionCard';
 import FloatingButton from '../components/FloatingButton';
-// import { Divider } from '@mui/material';
+import theme from '../theme';
 
 const questions: Questions[] = [
   {
@@ -19,6 +19,7 @@ const questions: Questions[] = [
     questionMark: 10,
     answerNum: 3,
     postTime: new Date('2023-08-04 10:10:10'),
+    isCurious: true,
   },
   {
     questionId: 2,
@@ -30,6 +31,7 @@ const questions: Questions[] = [
     questionMark: 5,
     answerNum: 7,
     postTime: new Date('2023-08-05 01:30:45'),
+    isCurious: false,
   },
   {
     questionId: 3,
@@ -41,6 +43,7 @@ const questions: Questions[] = [
     questionMark: 8,
     answerNum: 12,
     postTime: new Date('2022-09-02 08:20:55'),
+    isCurious: false,
   },
   {
     questionId: 4,
@@ -52,6 +55,7 @@ const questions: Questions[] = [
     questionMark: 7,
     answerNum: 9,
     postTime: new Date('2022-11-20 12:05:30'),
+    isCurious: true,
   },
   {
     questionId: 5,
@@ -64,6 +68,7 @@ const questions: Questions[] = [
     questionMark: 6,
     answerNum: 4,
     postTime: new Date('2022-07-07 17:40:20'),
+    isCurious: true,
   },
   {
     questionId: 6,
@@ -76,6 +81,7 @@ const questions: Questions[] = [
     questionMark: 9,
     answerNum: 11,
     postTime: new Date('2022-12-12 09:15:05'),
+    isCurious: false,
   },
   {
     questionId: 7,
@@ -87,6 +93,7 @@ const questions: Questions[] = [
     questionMark: 8,
     answerNum: 15,
     postTime: new Date('2022-06-30 22:55:40'),
+    isCurious: true,
   },
   {
     questionId: 8,
@@ -98,6 +105,7 @@ const questions: Questions[] = [
     questionMark: 7,
     answerNum: 6,
     postTime: new Date('2023-01-05 11:25:50'),
+    isCurious: true,
   },
   {
     questionId: 9,
@@ -110,6 +118,7 @@ const questions: Questions[] = [
     questionMark: 6,
     answerNum: 8,
     postTime: new Date('2023-04-18 16:30:15'),
+    isCurious: false,
   },
 ];
 interface Questions {
@@ -122,6 +131,11 @@ interface Questions {
   questionMark: number;
   answerNum: number;
   postTime: Date;
+  isCurious: boolean;
+}
+
+interface IStyledLinkProps {
+  isCurious: boolean;
 }
 
 const Container = styled.div`
@@ -130,7 +144,26 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0px;
-  gap: 20px;
+  gap: 10px;
+`;
+
+const StyledLink = styled(Link)<IStyledLinkProps>`
+  display: inline-block;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  margin-top: 10px;
+  ${({ isCurious }) =>
+    isCurious
+      ? `
+        background-image: linear-gradient(#ffffff, #ffffff),
+          linear-gradient(to right, ${theme.palette.color.main}, ${theme.palette.color.sub});
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+      `
+      : `
+        border: 2px solid ${theme.palette.mono.gray4};
+      `}
 `;
 
 export default function Main() {
@@ -139,17 +172,17 @@ export default function Main() {
   return (
     <>
       <Header />
-      <Container style={{ paddingTop: '20px' }}>
+      <Container style={{ paddingTop: '10px' }}>
         <Link to="/category">
           <AdCard />
         </Link>
       </Container>
       <CategoryMenuBar />
-      <Container>
+      <Container style={{ marginTop: '5px' }}>
         {questions.map((question) => (
-          <Link to={`/${question.categoryId}/${question.questionId}`} style={{ margin: 0, padding: 0 }}>
+          <StyledLink to={`/${question.categoryId}/${question.questionId}`} isCurious={question.isCurious}>
             <QuestionCard key={question.questionId} question={question} isSummary={true} />
-          </Link>
+          </StyledLink>
         ))}
       </Container>
       <Link to={`/category/${current_categoryId}/write/${userId}`}>
