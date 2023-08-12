@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
-<<<<<<< Updated upstream
-import InputLabel from '@mui/material/InputLabel';
-// import Box from '@mui/material/Box';
-=======
->>>>>>> Stashed changes
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -49,15 +44,9 @@ const CategoryMenuBarWrapper = styled.div`
 const CategoryButton = styled.div<CategoryButtonProps>`
   padding: 8px 15px;
   margin-right: 10px;
-<<<<<<< Updated upstream
-  color: ${(props) => (props.isSelected ? theme.palette.green.main : 'black')};
-  background-color: ${(props) => (props.isSelected ? theme.palette.green.lightgreen : '#ffffff')};
-  border: ${(props) => (props.isSelected ? 'none' : '1px solid lightgray')};
-=======
   background-color: ${(props) => (props.isSelected ? theme.palette.color.green4 : '#ffffff')};
   border: ${(props) => (props.isSelected ? 'none' : `1px solid ${theme.palette.mono.gray4}`)};
   color: ${(props) => (props.isSelected ? theme.palette.color.main : theme.palette.mono.gray2)};
->>>>>>> Stashed changes
   border-radius: 100px;
   cursor: pointer;
   height: 40px;
@@ -97,28 +86,17 @@ export default function CategoryMenuBar() {
             style={{
               width: 'fit-content',
               height: '40px',
-<<<<<<< Updated upstream
-              // backgroundColor: theme.palette.mono.gray2,
-              border: `1px solid ${theme.palette.green.main}`,
-              color: theme.palette.green.main,
-=======
               backgroundColor: theme.palette.mono.white,
               border: `1px solid ${theme.palette.color.main}`,
               color: theme.palette.color.main,
->>>>>>> Stashed changes
               borderRadius: '100px',
               fontSize: '12px',
             }}
             sx={{
               boxShadow: 'none',
               '.MuiOutlinedInput-notchedOutline': { border: 'none !important' },
-<<<<<<< Updated upstream
-              '.MuiSvgIcon-root ': {
-                fill: `${theme.palette.green.main}`,
-=======
               '& .MuiSvgIcon-root': {
                 color: theme.palette.color.main,
->>>>>>> Stashed changes
               },
             }}
           >

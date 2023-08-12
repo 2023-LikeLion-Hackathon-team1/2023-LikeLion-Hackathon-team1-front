@@ -2,10 +2,6 @@ import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-<<<<<<< Updated upstream
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-=======
->>>>>>> Stashed changes
 
 interface Questions {
   questionId: number;

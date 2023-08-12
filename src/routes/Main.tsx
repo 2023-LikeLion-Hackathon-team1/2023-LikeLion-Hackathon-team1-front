@@ -6,11 +6,7 @@ import { Link } from 'react-router-dom';
 import CategoryMenuBar from '../components/CategoryMenuBar';
 import QuestionCard from '../components/QuestionCard';
 import FloatingButton from '../components/FloatingButton';
-<<<<<<< Updated upstream
-import { Divider } from '@mui/material';
-=======
 import theme from '../theme';
->>>>>>> Stashed changes
 
 const questions: Questions[] = [
   {
@@ -184,15 +180,9 @@ export default function Main() {
       <CategoryMenuBar />
       <Container style={{ marginTop: '5px' }}>
         {questions.map((question) => (
-<<<<<<< Updated upstream
-          <Link to={`/${question.categoryId}/${question.questionId}`} style={{ margin: 0, padding: 0 }}>
-            <QuestionCard question={question} isSummary={true} />
-          </Link>
-=======
           <StyledLink to={`/${question.categoryId}/${question.questionId}`} isCurious={question.isCurious}>
             <QuestionCard key={question.questionId} question={question} isSummary={true} />
           </StyledLink>
->>>>>>> Stashed changes
         ))}
       </Container>
       <Link to={`/category/${current_categoryId}/write/${userId}`}>
