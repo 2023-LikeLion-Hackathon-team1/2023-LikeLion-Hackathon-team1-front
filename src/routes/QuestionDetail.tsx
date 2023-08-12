@@ -4,6 +4,7 @@ import QuestionCard from '../components/QuestionCard';
 import { styled } from 'styled-components';
 import AnswerCard from '../components/AnswerCard';
 import AnswerText from '../components/AnswerText';
+import theme from '../theme';
 
 const questions: Questions[] = [
   {
@@ -208,6 +209,7 @@ interface RouteParams {
 
 const Question = styled.div`
   display: flex;
+  border-bottom: 1px solid ${theme.palette.mono.gray3};
 `;
 
 const AnswerList = styled.div``;

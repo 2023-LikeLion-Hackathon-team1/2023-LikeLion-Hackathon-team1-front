@@ -58,20 +58,16 @@ const CategoryButton = styled.div<CategoryButtonProps>`
 `;
 
 export default function CategoryMenuBar() {
+  const [choose, setChoose] = React.useState('업로드');
   const [selectedCategory, setSelectedCategory] = useState('');
+
+  const handleChange = (event: SelectChangeEvent<unknown>) => {
+    setChoose(event.target.value as string);
+  };
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
     // sendDataToServer(category);
-  };
-
-  const [choose, setChoose] = React.useState('업로드'); // 기본값을 30으로 설정
-
-  // const handleChange = (event: SelectChangeEvent) => {
-  //   setChoose(event.target.value);
-  // };
-  const handleChange = (event: SelectChangeEvent<unknown>) => {
-    setChoose(event.target.value as string);
   };
 
   return (
@@ -155,7 +151,9 @@ export default function CategoryMenuBar() {
           </CategoryButton>
         ))}
       </CategoryMenuBarWrapper>
-      {/* <p>선택된 카테고리: {selectedCategory}</p> */}
+
+      {/* <p>선택된 카테고리: {choose}</p>
+      <p>선택된 카테고리: {selectedCategory}</p> */}
     </>
   );
 }
