@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-
 import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+<<<<<<< Updated upstream
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+=======
+>>>>>>> Stashed changes
 
 interface Questions {
   questionId: number;
@@ -15,6 +17,7 @@ interface Questions {
   questionMark: number;
   answerNum: number;
   postTime: Date;
+  isCurious: boolean;
 }
 
 interface QuestionCardProps {
@@ -23,16 +26,8 @@ interface QuestionCardProps {
 }
 
 const Card = styled.div`
-  width: 95vw;
-  /* margin-bottom: 10px; */
-  /* min-width: 100vw; */
-  /* height: 140px; */
-  /* background-color: lightblue; */
-  /* border-top: 1px solid black; */
-  border: 1px solid lightgray;
-  border-radius: 30px;
-  border-bottom: 1px solid lightgray;
-  padding: 15px 30px;
+  width: 90vw;
+  padding: 20px 20px;
 `;
 
 const Profile = styled.div`
@@ -140,7 +135,7 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
       </Profile>
       <Title> {question.title} </Title>
       <Content>
-        {question.content.length > 30 && isSummary === true ? question.content.slice(0, 30) + '...' : question.content}
+        {question.content.length > 29 && isSummary === true ? question.content.slice(0, 29) + '...' : question.content}
       </Content>
       <Bottom>
         <Icons>

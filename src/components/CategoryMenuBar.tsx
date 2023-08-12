@@ -1,47 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
+<<<<<<< Updated upstream
 import InputLabel from '@mui/material/InputLabel';
 // import Box from '@mui/material/Box';
+=======
+>>>>>>> Stashed changes
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-
-const CategoryMenuBarWrapper = styled.div`
-  display: flex;
-  padding: 5px 0px;
-  overflow-x: auto;
-  width: 100%;
-  align-items: center;
-
-  /* 스크롤바 스타일 */
-  ::-webkit-scrollbar {
-    width: 0; /* 스크롤바 너비를 0으로 설정하여 스크롤바를 숨김 */
-    background-color: transparent; /* 스크롤바 배경을 투명으로 설정하여 숨김 */
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: transparent; /* 스크롤바 썸네일 색상을 투명으로 설정하여 숨김 */
-  }
-
-  /* 추가적인 스크롤바 스타일 설정을 원하면 여기에 추가하면 됩니다 */
-`;
-
-const CategoryButton = styled.div<CategoryButtonProps>`
-  padding: 8px 15px;
-  margin-right: 10px;
-  color: ${(props) => (props.isSelected ? theme.palette.green.main : 'black')};
-  background-color: ${(props) => (props.isSelected ? theme.palette.green.lightgreen : '#ffffff')};
-  border: ${(props) => (props.isSelected ? 'none' : '1px solid lightgray')};
-  border-radius: 100px;
-  cursor: pointer;
-  height: 40px;
-  font-size: 12px;
-  min-width: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const categoryList = [
   { id: 1, name: '🍒 디자인' },
@@ -60,6 +27,46 @@ const categoryList = [
 interface CategoryButtonProps {
   isSelected: boolean;
 }
+
+const CategoryMenuBarWrapper = styled.div`
+  display: flex;
+  padding: 5px 0px;
+  overflow-x: auto;
+  width: 100%;
+  align-items: center;
+
+  /* 스크롤바 스타일 */
+  ::-webkit-scrollbar {
+    width: 0; /* 스크롤바 너비를 0으로 설정하여 스크롤바를 숨김 */
+    background-color: transparent; /* 스크롤바 배경을 투명으로 설정하여 숨김 */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent; /* 스크롤바 썸네일 색상을 투명으로 설정하여 숨김 */
+  }
+`;
+
+const CategoryButton = styled.div<CategoryButtonProps>`
+  padding: 8px 15px;
+  margin-right: 10px;
+<<<<<<< Updated upstream
+  color: ${(props) => (props.isSelected ? theme.palette.green.main : 'black')};
+  background-color: ${(props) => (props.isSelected ? theme.palette.green.lightgreen : '#ffffff')};
+  border: ${(props) => (props.isSelected ? 'none' : '1px solid lightgray')};
+=======
+  background-color: ${(props) => (props.isSelected ? theme.palette.color.green4 : '#ffffff')};
+  border: ${(props) => (props.isSelected ? 'none' : `1px solid ${theme.palette.mono.gray4}`)};
+  color: ${(props) => (props.isSelected ? theme.palette.color.main : theme.palette.mono.gray2)};
+>>>>>>> Stashed changes
+  border-radius: 100px;
+  cursor: pointer;
+  height: 40px;
+  font-size: 12px;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default function CategoryMenuBar() {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -90,17 +97,28 @@ export default function CategoryMenuBar() {
             style={{
               width: 'fit-content',
               height: '40px',
+<<<<<<< Updated upstream
               // backgroundColor: theme.palette.mono.gray2,
               border: `1px solid ${theme.palette.green.main}`,
               color: theme.palette.green.main,
+=======
+              backgroundColor: theme.palette.mono.white,
+              border: `1px solid ${theme.palette.color.main}`,
+              color: theme.palette.color.main,
+>>>>>>> Stashed changes
               borderRadius: '100px',
               fontSize: '12px',
             }}
             sx={{
               boxShadow: 'none',
               '.MuiOutlinedInput-notchedOutline': { border: 'none !important' },
+<<<<<<< Updated upstream
               '.MuiSvgIcon-root ': {
                 fill: `${theme.palette.green.main}`,
+=======
+              '& .MuiSvgIcon-root': {
+                color: theme.palette.color.main,
+>>>>>>> Stashed changes
               },
             }}
           >
@@ -109,9 +127,9 @@ export default function CategoryMenuBar() {
               sx={{
                 fontSize: '12px',
                 '&.Mui-selected': {
-                  backgroundColor: `${theme.palette.mono.gray2}`,
+                  backgroundColor: `${theme.palette.color.green4}`,
                   '&:hover': {
-                    backgroundColor: `${theme.palette.mono.gray2}`,
+                    backgroundColor: `${theme.palette.color.green4}`,
                   },
                 },
               }}
@@ -123,9 +141,9 @@ export default function CategoryMenuBar() {
               sx={{
                 fontSize: '12px',
                 '&.Mui-selected': {
-                  backgroundColor: `${theme.palette.mono.gray2}`,
+                  backgroundColor: `${theme.palette.color.green4}`,
                   '&:hover': {
-                    backgroundColor: `${theme.palette.mono.gray2}`,
+                    backgroundColor: `${theme.palette.color.green4}`,
                   },
                 },
               }}
@@ -137,9 +155,9 @@ export default function CategoryMenuBar() {
               sx={{
                 fontSize: '12px',
                 '&.Mui-selected': {
-                  backgroundColor: `${theme.palette.mono.gray2}`,
+                  backgroundColor: `${theme.palette.color.green4}`,
                   '&:hover': {
-                    backgroundColor: `${theme.palette.mono.gray2}`,
+                    backgroundColor: `${theme.palette.color.green4}`,
                   },
                 },
               }}
