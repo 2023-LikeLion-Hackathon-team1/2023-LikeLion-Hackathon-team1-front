@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import theme from '../theme';
 

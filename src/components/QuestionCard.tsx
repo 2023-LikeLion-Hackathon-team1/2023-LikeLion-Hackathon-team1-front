@@ -86,14 +86,6 @@ const Icons = styled.div`
   font-size: 12px;
 `;
 
-const Response = styled.div`
-  display: flex;
-  gap: 5px;
-  color: gray;
-  font-size: 12px;
-`;
-const Answer = styled.div``;
-
 export default function QuestionCard({ question, isSummary }: QuestionCardProps) {
   const [timeAgo, setTimeAgo] = useState<string>('');
 
@@ -139,10 +131,6 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
           3
           <ChatBubbleOutlineIcon style={{ width: '16px' }} />4
         </Icons>
-        {/* <Response>
-          <Answer>{`궁금해요 ${question.questionMark}개`} </Answer>
-          <Answer>{`답변 ${question.answerNum}개`} </Answer>
-        </Response> */}
       </Bottom>
     </Card>
   );

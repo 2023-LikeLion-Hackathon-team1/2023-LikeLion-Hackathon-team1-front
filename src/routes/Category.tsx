@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
 import { Link } from 'react-router-dom';
