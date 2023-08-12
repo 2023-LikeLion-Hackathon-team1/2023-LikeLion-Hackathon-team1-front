@@ -10,10 +10,6 @@ const Float = styled.div`
   z-index: 100;
 `;
 
-// const CustomFab = styled(Fab)`
-//   background-color: ${theme.palette.green.darkgreen};
-// `;
-
 export default function FloatingButton() {
   return (
     <>
@@ -21,7 +17,7 @@ export default function FloatingButton() {
         <Fab
           aria-label="add"
           sx={{
-            backgroundColor: theme.palette.green.darkgreen,
+            backgroundColor: theme.palette.color.green2,
             color: 'white',
           }}
         >

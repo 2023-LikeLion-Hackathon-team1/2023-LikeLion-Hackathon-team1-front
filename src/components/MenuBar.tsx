@@ -24,7 +24,7 @@ const BottomBar = styled.div`
 `;
 
 const StyledLink = styled(Link)<{ active: boolean }>`
-  color: ${(props) => (props.active ? theme.palette.green.main : 'lightgray')};
+  color: ${(props) => (props.active ? theme.palette.color.main : 'lightgray')};
 `;
 
 const Block = styled.p`
