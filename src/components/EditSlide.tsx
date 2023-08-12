@@ -8,17 +8,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import styled from 'styled-components';
 import LogoImg from '../imgs/logo.png';
 
-const Buy = styled.button`
-  font-size: 16px;
-  width: 350px;
-  height: 50px;
-  background-color: #6314e7;
-  color: white;
-  font-weight: bold;
-  border: 0;
-  border-radius: 5px;
-`;
-
 const PopUpContainer = styled.div`
   display: flex;
   flex-direction: column;

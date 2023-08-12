@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+// import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import theme from '../theme';
 import EditSlide from './EditSlide';
 

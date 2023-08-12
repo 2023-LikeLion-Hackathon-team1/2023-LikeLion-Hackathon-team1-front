@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import SubHeader from '../components/SubHeader';
 import AlarmCard from '../components/AlarmCard';
 
-const alarmList: Alarm[] = [
+const alarmList: IAlarm[] = [
   {
     alarmId: 1,
     questionId: 1,
@@ -38,7 +38,7 @@ const alarmList: Alarm[] = [
   },
 ];
 
-interface Alarm {
+interface IAlarm {
   alarmId: number;
   questionId: number;
   userId: number;
@@ -65,7 +65,7 @@ export default function Alarm() {
       <Container>
         {alarmList.map((alarm) => (
           //   <Link to={`/${.categoryId}/${question.questionId}`} style={{ margin: 0, padding: 0 }}>
-          <AlarmCard alarm={alarm} />
+          <AlarmCard key={alarm.alarmId} alarm={alarm} />
           //   </Link>
         ))}
       </Container>

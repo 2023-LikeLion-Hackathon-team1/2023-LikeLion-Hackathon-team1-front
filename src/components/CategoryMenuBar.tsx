@@ -27,7 +27,7 @@ interface CategoryButtonProps {
 
 const CategoryMenuBarWrapper = styled.div`
   display: flex;
-  padding: 5px 0px;
+  padding-top: 5px;
   overflow-x: auto;
   width: 100%;
   align-items: center;
@@ -109,7 +109,7 @@ export default function CategoryMenuBar() {
                 },
               }}
             >
-              업로드순
+              업로드
             </MenuItem>
             <MenuItem
               value="조회수"
@@ -123,7 +123,7 @@ export default function CategoryMenuBar() {
                 },
               }}
             >
-              조회수순
+              조회수
             </MenuItem>
             <MenuItem
               value="궁금해요"
@@ -137,7 +137,7 @@ export default function CategoryMenuBar() {
                 },
               }}
             >
-              궁금해요순
+              궁금해요
             </MenuItem>
           </Select>
         </FormControl>
