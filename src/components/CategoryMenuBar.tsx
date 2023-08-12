@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useRecoilState } from 'recoil';
+import { CategoryState } from '../store/atom';
 
 const categoryList = [
   { id: 1, name: '🍒 디자인' },
@@ -59,7 +61,7 @@ const CategoryButton = styled.div<CategoryButtonProps>`
 
 export default function CategoryMenuBar() {
   const [choose, setChoose] = React.useState('업로드');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useRecoilState(CategoryState);
 
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     setChoose(event.target.value as string);
@@ -67,7 +69,6 @@ export default function CategoryMenuBar() {
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
-    // sendDataToServer(category);
   };
 
   return (

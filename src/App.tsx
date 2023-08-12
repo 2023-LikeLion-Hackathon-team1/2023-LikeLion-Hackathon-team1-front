@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { createGlobalStyle } from 'styled-components';
 import Router from './Router';
 import theme from './theme';
+import { RecoilRoot } from 'recoil';
 // import { useParams } from 'react-router';
 // import { RecoilRoot } from 'recoil';
 
@@ -72,13 +73,13 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          {/* <RecoilRoot> */}
-          <GlobalStyle />
-          <Router />
-          <ReactQueryDevtools initialIsOpen={true} />
-          {/* </RecoilRoot> */}
-        </ThemeProvider>
+        <RecoilRoot>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <Router />
+            <ReactQueryDevtools initialIsOpen={true} />
+          </ThemeProvider>
+        </RecoilRoot>
       </QueryClientProvider>
     </>
   );
