@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import { PiHeartDuotone } from 'react-icons/pi';
 import theme from '../theme';
 
 interface Answers {
@@ -99,6 +97,7 @@ const Like = styled.div`
 
 export default function AnswerCard({ answer }: { answer: Answers }) {
   const [timeAgo, setTimeAgo] = useState<string>('');
+  const [isLiked, setIsLiked] = useState<boolean>(false); // Ne
 
   useEffect(() => {
     const currentDate = new Date();
@@ -123,6 +122,27 @@ export default function AnswerCard({ answer }: { answer: Answers }) {
     setTimeAgo(timeAgoStr);
   }, [answer.postTime]);
 
+  const handleLikeClick = () => {
+    // Toggle the like status
+    setIsLiked(!isLiked);
+
+    // Call your API here
+    // Example: You can use the fetch function to make the API call
+    if (!isLiked) {
+      fetch('your_api_endpoint_here', {
+        method: 'POST', // or 'GET' depending on your API
+        // ... (other necessary options)
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Handle the API response if needed
+        })
+        .catch((error) => {
+          // Handle errors if needed
+        });
+    }
+  };
+
   return (
     <Card>
       <Profile>
@@ -136,14 +156,18 @@ export default function AnswerCard({ answer }: { answer: Answers }) {
       <Content>{answer.content}</Content>
       <Bottom>
         <Icons>
-          <FavoriteBorderRoundedIcon style={{ width: '20px' }} />
-          <ChatBubbleOutlineIcon style={{ width: '20px' }} />
+          <PiHeartDuotone
+            size="16px"
+            onClick={handleLikeClick}
+            style={{ color: isLiked ? theme.palette.color.main : 'gray' }}
+          />
         </Icons>
-        <Response>
+        {/* <Response>
           <Like>{`좋아요 ${answer.likeNum}개`} </Like>
           <Like>{`답변 ${answer.likeNum}개`} </Like>
-        </Response>
+        </Response> */}
       </Bottom>
     </Card>
   );
 }
+// /answer/like/{answer_id}/{member_id}
