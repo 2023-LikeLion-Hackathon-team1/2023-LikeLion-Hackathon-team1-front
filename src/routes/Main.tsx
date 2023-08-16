@@ -10,6 +10,7 @@ import theme from '../theme';
 import { useQuery } from 'react-query';
 import { GetAllQuestion } from '../apis/Questions';
 import vector from '../imgs/vector.png';
+import GoogleButton from '../auth/GoogleButton';
 
 // const questions: Questions[] = [
 //   {
@@ -218,6 +219,7 @@ export default function Main() {
         <Link to="/category">
           <AdCard />
         </Link>
+        <GoogleButton />
       </Container>
       <CategoryMenuBar />
       <Container style={{ marginTop: '5px' }}>

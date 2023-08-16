@@ -6,6 +6,9 @@ import CameraAltTwoToneIcon from '@mui/icons-material/CameraAltTwoTone';
 import theme from '../theme';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { CategoryIdState } from '../store/atom';
+import { BASE_URL } from '../apis/Questions';
 
 const Form = styled.form`
   display: flex;
@@ -74,14 +77,18 @@ export default function WriteQuestion() {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [selectedImage, setSelectedImage] = useState<string | null>(null); // Specify the type for selectedImage
+  const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
+  // const [selectedImage, setSelectedImage] = useState<string | null>(null); // Specify the type for selectedImage
 
   const subminQuestion = async () => {
-    // const response = await axios.post('/api/question', {
-    //   title: title,
-    //   content: content,
-    //   // 여기에 필요한 다른 데이터도 추가 가능
-    // });
+    const member_id = 1;
+    const response = await axios
+      .post(`${BASE_URL}/questions/${selectedCategoryId}/${member_id}`, {
+        questionTitle: title,
+        questionContent: content,
+        // 여기에 필요한 다른 데이터도 추가 가능
+      })
+      .then((response) => console.log(response.data));
     history.push('/');
   };
 
@@ -100,17 +107,17 @@ export default function WriteQuestion() {
     };
   }, []);
 
-  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    // Add type annotation for event
-    const file = event.target.files?.[0]; // Use optional chaining to access files property
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setSelectedImage(reader.result as string); // Cast reader.result to string
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   // Add type annotation for event
+  //   const file = event.target.files?.[0]; // Use optional chaining to access files property
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       setSelectedImage(reader.result as string); // Cast reader.result to string
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   return (
     <>
@@ -120,9 +127,9 @@ export default function WriteQuestion() {
         <TitleInput placeholder="제목" />
         <Divider light style={{ width: '100%' }} />
         <ContentInput placeholder="궁금한 질문을 이곳에 적어보세요." style={{ height: '50vh' }} />
-        {selectedImage && <SmallImg src={selectedImage} alt="Selected" />}
+        {/* {selectedImage && <SmallImg src={selectedImage} alt="Selected" />} */}
         <BottomBar keyboardHeight={keyboardHeight}>
-          <label htmlFor="image-upload">
+          {/* <label htmlFor="image-upload">
             <input
               id="image-upload"
               type="file"
@@ -131,7 +138,8 @@ export default function WriteQuestion() {
               onChange={handleImageChange}
             />
             <CameraAltTwoToneIcon style={{ color: theme.palette.color.main }} />
-          </label>
+          </label> */}
+          <div />
           <TextButton onClick={subminQuestion}> 등록 </TextButton>
         </BottomBar>
       </Form>

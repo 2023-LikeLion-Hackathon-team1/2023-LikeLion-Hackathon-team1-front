@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import Router from './Router';
 import theme from './theme';
 import { RecoilRoot } from 'recoil';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 // import { useParams } from 'react-router';
 // import { RecoilRoot } from 'recoil';
 
@@ -75,9 +76,11 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <Router />
-            <ReactQueryDevtools initialIsOpen={true} />
+            <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID as any}>
+              <GlobalStyle />
+              <Router />
+              <ReactQueryDevtools initialIsOpen={true} />
+            </GoogleOAuthProvider>
           </ThemeProvider>
         </RecoilRoot>
       </QueryClientProvider>

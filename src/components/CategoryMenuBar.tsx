@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useRecoilState } from 'recoil';
-import { CategoryState } from '../store/atom';
+import { CategoryState, CategoryIdState } from '../store/atom';
 import { useQuery } from 'react-query';
 import { GetMyCategory } from '../apis/Questions';
 
@@ -55,13 +55,15 @@ const CategoryButton = styled.div<CategoryButtonProps>`
 export default function CategoryMenuBar() {
   const [choose, setChoose] = React.useState('업로드');
   const [selectedCategory, setSelectedCategory] = useRecoilState(CategoryState);
+  const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
 
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     setChoose(event.target.value as string);
   };
 
-  const handleCategoryClick = (category: string) => {
+  const handleCategoryClick = (category: string, id: number) => {
     setSelectedCategory(category);
+    setSelectedCategoryId(id);
   };
 
   const { isLoading, data: categoryList } = useQuery<Icategory[]>(
@@ -149,7 +151,7 @@ export default function CategoryMenuBar() {
           <CategoryButton
             key={category.id}
             isSelected={selectedCategory === category.name}
-            onClick={() => handleCategoryClick(category.name)}
+            onClick={() => handleCategoryClick(category.name, category.id)}
           >
             {category.name}
           </CategoryButton>
