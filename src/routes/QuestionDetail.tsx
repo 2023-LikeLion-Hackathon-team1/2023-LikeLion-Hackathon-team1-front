@@ -120,27 +120,17 @@ import theme from '../theme';
 //   },
 // ];
 
-const questions: IQuestion[] = [
-  {
-    question_id: 1,
-    question_title: 'First Question',
-    question_content: 'This is the first question.',
-    questioner_id: 1,
-    create_date: '2023-08-16T00:00:00',
-    questionLikeCount: 1,
-    imageUrls: [],
-    userImage: null,
-  },
-];
 interface IQuestion {
   question_id: number;
+  category_id: number;
+  questioner_id: number;
   question_title: string;
   question_content: string;
-  questioner_id: number;
+  question_liked_num: number;
+  isLike_active: boolean;
   create_date: string;
-  questionLikeCount: number;
-  imageUrls: string[];
-  userImage: string | null;
+  answer_num: number | null;
+  questioner_name: string;
 }
 
 const answers: Answers[] = [
@@ -246,9 +236,7 @@ export default function QuestionDetail() {
   return (
     <>
       <SubHeader title="질문하기" />
-      <Question>
-        <QuestionCard question={questions[0]} isSummary={false} />
-      </Question>
+      <Question>{/* <QuestionCard question={questions[0]} isSummary={false} /> */}</Question>
       <AnswerList>
         {answers.map((answer) => (
           <AnswerCard key={answer.answerId} answer={answer} />

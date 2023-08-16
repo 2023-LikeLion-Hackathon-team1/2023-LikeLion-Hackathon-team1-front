@@ -5,32 +5,20 @@ import { BiCircle } from 'react-icons/bi';
 import { FiBookmark } from 'react-icons/fi';
 import theme from '../theme';
 
-// interface Questions {
-//   questionId: number;
-//   categoryId: number;
-//   userName: string;
-//   userImg: string;
-//   title: string;
-//   content: string;
-//   questionMark: number;
-//   answerNum: number;
-//   postTime: Date;
-//   isCurious: boolean;
-// }
-
 interface IQuestion {
   question_id: number;
+  category_id: number;
+  questioner_id: number;
   question_title: string;
   question_content: string;
-  questioner_id: number;
+  question_liked_num: number;
+  isLike_active: boolean;
   create_date: string;
-  questionLikeCount: number;
-  imageUrls: string[];
-  userImage: string | null;
+  answer_num: number | null;
+  questioner_name: string;
 }
 
 interface QuestionCardProps {
-  // question: Questions;
   question: IQuestion;
   isSummary: boolean;
 }
@@ -180,17 +168,17 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
   return (
     <Card isSummary={isSummary}>
       <Profile>
-        <ProfileImg src={question?.userImage || undefined} />
+        {/* <ProfileImg src={question?.userImage || undefined} /> */}
         <ProfileColumn>
           <ProfileName>{userName}</ProfileName>
           <Time>{timeAgo}</Time>
         </ProfileColumn>
       </Profile>
-      <Title> {question.question_title} </Title>
+      <Title> {question?.question_title} </Title>
       <Content>
-        {question.question_content.length > 29 && isSummary === true
-          ? question.question_content.slice(0, 29) + '...'
-          : question.question_content}
+        {question?.question_content.length > 29 && isSummary === true
+          ? question?.question_content.slice(0, 29) + '...'
+          : question?.question_content}
       </Content>
       <Bottom>
         <Icons>
@@ -205,11 +193,11 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
             }}
             onClick={handleLikeClick}
           >
-            <BiCircle size="16px" style={{ color: isLiked ? theme.palette.color.main : 'gray' }} />{' '}
-            {question.questionLikeCount}
+            <BiCircle size="16px" style={{ color: isLiked ? theme.palette.color.main : 'gray' }} />
+            {question?.question_liked_num}
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: '5px' }}>
-            <BsChat size="16px" /> {question.questionLikeCount}
+            <BsChat size="16px" /> {question?.answer_num}
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-end' }} onClick={handleBookedClick}>
             {isSummary === false && (

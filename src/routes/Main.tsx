@@ -8,9 +8,10 @@ import QuestionCard from '../components/QuestionCard';
 import FloatingButton from '../components/FloatingButton';
 import theme from '../theme';
 import { useQuery } from 'react-query';
-import { GetAllQuestion } from '../apis/Questions';
+import { GetCateQuestion } from '../apis/Questions';
 import vector from '../imgs/vector.png';
-import GoogleButton from '../auth/GoogleButton';
+import { useRecoilState } from 'recoil';
+import { CategoryIdState, MemberIdState } from '../store/atom';
 
 // const questions: Questions[] = [
 //   {
@@ -140,13 +141,15 @@ import GoogleButton from '../auth/GoogleButton';
 
 interface IQuestion {
   question_id: number;
+  category_id: number;
+  questioner_id: number;
   question_title: string;
   question_content: string;
-  questioner_id: number;
+  question_liked_num: number;
+  isLike_active: boolean;
   create_date: string;
-  questionLikeCount: number;
-  imageUrls: string[];
-  userImage: string | null;
+  answer_num: number | null;
+  questioner_name: string;
 }
 
 interface IStyledLinkProps {
@@ -198,13 +201,15 @@ const StyledLink = styled(Link)<IStyledLinkProps>`
 `;
 
 export default function Main() {
-  const current_categoryId = 1;
-  const userId = 1;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedMemberId, setSelectedMemberId] = useRecoilState(MemberIdState);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: questions } = useQuery<IQuestion[]>(
-    ['GetAllQuestion', GetAllQuestion],
-    () => GetAllQuestion().then((response) => response.data),
+    ['GetAllQuestion', GetCateQuestion],
+    () => GetCateQuestion(selectedCategoryId, selectedMemberId).then((response) => response.data),
     {
       onSuccess: (data) => {
         console.log('GetAllQuestion', data);
@@ -217,21 +222,18 @@ export default function Main() {
       <Vector src={vector} />
       <Header />
       <Container style={{ paddingTop: '10px' }}>
-        <Link to="/category">
-          <AdCard />
-        </Link>
-        <GoogleButton />
+        <AdCard />
       </Container>
       <CategoryMenuBar />
       <Container style={{ marginTop: '5px' }}>
         {(questions as IQuestion[])?.map((question: IQuestion) => (
-          <StyledLink to={`question/${question.question_id}`} isCurious={false}>
+          <StyledLink to={`question/${question?.question_id}`} isCurious={false}>
             {/* 수정*/}
-            <QuestionCard key={question.question_id} question={question} isSummary={true} />
+            <QuestionCard key={question?.question_id} question={question} isSummary={true} />
           </StyledLink>
         ))}
       </Container>
-      <Link to={`/category/${current_categoryId}/write/${userId}`}>
+      <Link to={`/category/${selectedCategoryId}/write/${selectedMemberId}`}>
         <FloatingButton />
       </Link>
       <div style={{ height: '20px' }} />

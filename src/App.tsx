@@ -6,8 +6,6 @@ import Router from './Router';
 import theme from './theme';
 import { RecoilRoot } from 'recoil';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-// import { useParams } from 'react-router';
-// import { RecoilRoot } from 'recoil';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');

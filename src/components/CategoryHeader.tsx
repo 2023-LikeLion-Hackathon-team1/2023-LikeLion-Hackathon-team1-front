@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import theme from '../theme';
-import { CategoryState } from '../store/atom';
+import { CategoryState, MemberIdState } from '../store/atom';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
@@ -24,6 +24,8 @@ const Header = styled.div`
 
 export default function CategoryHeader() {
   const [selectedCategory, setSelectedCategory] = useRecoilState(CategoryState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedMemberId, setSelectedMemberId] = useRecoilState(MemberIdState);
   const handleGoBack = () => {
     window.history.back(); // 뒤로가기 기능 실행
   };
@@ -35,7 +37,7 @@ export default function CategoryHeader() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: categoryList } = useQuery<Icategory[]>(
     ['GetMyCategory', GetMyCategory],
-    () => GetMyCategory(1).then((response) => response.data),
+    () => GetMyCategory(selectedMemberId).then((response) => response.data),
     {
       onSuccess: (data) => {
         console.log('GetMyCategory', data);

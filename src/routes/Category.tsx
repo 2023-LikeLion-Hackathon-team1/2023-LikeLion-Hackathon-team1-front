@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { GetAllCategory } from '../apis/Questions';
+import { useRecoilState } from 'recoil';
+import { CategoryIdState, CategoryState } from '../store/atom';
 
 interface CategoryButtonProps {
   isSelected: boolean;
@@ -46,7 +48,7 @@ const Slide = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   background-color: white;
 `;
 
@@ -63,6 +65,8 @@ const SubTitle = styled.div`
 
 const ButtonsContainer = styled.div`
   margin-top: 40px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const CategoryButton = styled.button<CategoryButtonProps>`
@@ -118,6 +122,11 @@ export default function Category() {
   const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedCategory, setSelectedCategory] = useRecoilState(CategoryState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: categoryList } = useQuery<BigCategory[]>(
     ['GetAllQuestion', GetAllCategory],
     () => GetAllCategory().then((response) => response.data),
@@ -144,6 +153,9 @@ export default function Category() {
     }
     console.log(selectedCategories);
     sendDataToServer(id);
+
+    setSelectedCategory(category);
+    setSelectedCategoryId(id);
   };
 
   const sendDataToServer = async (id: number) => {
@@ -165,17 +177,6 @@ export default function Category() {
         <Container>
           <Title>관심사를 취미를 선택해주세요</Title>
           <SubTitle> 맞춤 카테고리를 형성하기 위함입니다. </SubTitle>
-          {/* <ButtonsContainer>
-            {categoryList.map((category) => (
-              <CategoryButton
-                key={category.id}
-                isSelected={selectedCategories.includes(category.name)}
-                onClick={() => handleCategoryClick(category.name, category.id)}
-              >
-                {category.name}
-              </CategoryButton>
-            ))}
-          </ButtonsContainer> */}
           <ButtonsContainer>
             {(categoryList as BigCategory[])?.map((bigCategory: BigCategory) => (
               <div key={bigCategory.big3_category_id}>

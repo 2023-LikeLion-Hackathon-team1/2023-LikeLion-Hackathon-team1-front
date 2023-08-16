@@ -7,6 +7,10 @@ import WriteQuestion from './routes/WriteQuestion';
 import SearchCategory from './routes/SearchCategory';
 import Alarm from './routes/Alarm';
 import Bookmark from './routes/Bookmark';
+import Splash from './routes/Splash';
+import SignUp from './routes/SignUp';
+import AddName from './routes/AddName';
+import MyPage from './routes/MyPage';
 
 const Page = styled.div`
   display: flex;
@@ -30,9 +34,6 @@ function Router() {
             <Route exact path="/">
               <Main />
             </Route>
-            <Route exact path="/category">
-              <Category />
-            </Route>
             <Route exact path="/question/:questionId">
               <QuestionDetail />
             </Route>
@@ -47,6 +48,21 @@ function Router() {
             </Route>
             <Route exact path="/bookmark">
               <Bookmark />
+            </Route>
+            <Route exact path="/first">
+              <Splash />
+            </Route>
+            <Route exact path="/first/signUp">
+              <SignUp />
+            </Route>
+            <Route exact path="/first/signUp/addName">
+              <AddName />
+            </Route>
+            <Route exact path="/first/signUp/addName/category">
+              <Category />
+            </Route>
+            <Route exact path="/mypage">
+              <MyPage />
             </Route>
           </Center>
         </Page>

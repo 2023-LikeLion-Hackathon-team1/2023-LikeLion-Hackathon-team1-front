@@ -159,9 +159,6 @@ export default function CategoryMenuBar() {
           </CategoryButton>
         ))}
       </CategoryMenuBarWrapper>
-
-      {/* <p>선택된 카테고리: {choose}</p>
-      <p>선택된 카테고리: {selectedCategory}</p> */}
     </>
   );
 }

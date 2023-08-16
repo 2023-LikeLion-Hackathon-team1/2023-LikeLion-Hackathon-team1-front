@@ -1,51 +1,43 @@
-// GoogleButton.js
-
 // eslint-disable-next-line no-unused-vars
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import jwtDecode from 'jwt-decode';
-// import React, { useRef } from 'react';
-// import { userLogin, userSignup } from '../apis/users';
-// import { useRecoilValue, useSetRecoilState } from 'recoil';
-// import { isLoginState, isRegisterModalState, userLoginInfo } from '../store/atom';
-// import { useNavigate } from 'react-router-dom';
-// import HeaderButton from '../components/HeaderButton';
-// import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { IsLoginState, MemberIdState } from '../store/atom';
+import axios from 'axios';
 
 export default function GoogleButton() {
   // eslint-disable-next-line no-unused-vars
-  let history = useHistory();
+  const [Login, setLogin] = useRecoilState(IsLoginState);
+  // eslint-disable-next-line no-unused-vars
+  const [memberId, setMemberId] = useRecoilState(MemberIdState);
 
-  //   const setRegisterModalState = useSetRecoilState(isRegisterModalState);
-  //   const setUserLoginInfo = useSetRecoilState(userLoginInfo);
-  //   const setIsLogin = useRecoilValue(isLoginState);
-  // const { loginWithCredential } = useAuthContext();
+  let history = useHistory();
 
   const onSuccess = async (credentialResponse) => {
     const decodedToken = jwtDecode(credentialResponse.credential);
     console.log(decodedToken);
-    // userLogin(decodedToken.sub)
-    //   .then((response) => {
-    //     if (response.data.isRegistered === true) {
-    //       localStorage.setItem('accessToken', response.data.tokens.accessToken);
-    //       localStorage.setItem('refreshToken', response.data.tokens.refreshToken);
-    //       window.location.href = '/';
-    //       setIsLogin(true);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     if (error.response.data.isRegistered === false) {
-    //       console.log('ddd', error.response.data);
-    //       history.push('/');
-    //       setRegisterModalState(true);
-    //       setUserLoginInfo(decodedToken);
-    //     }
-    //   });
-  };
 
-  //   const onFailure = (error) => {
-  //     console.log(error);
-  //   };
+    try {
+      const response = await axios.post('http://localhost:8080/members/google-login', {
+        googleAccountId: decodedToken.googleAccountId, // Google 계정 ID
+        imgUrl: decodedToken.imgUrl, // 유저 이미지 URL
+        code: decodedToken.code, // Google OAuth 코드
+      });
+
+      if (response.data.isRegistered === true) {
+        localStorage.setItem('accessToken', response.data.tokens.accessToken);
+        localStorage.setItem('refreshToken', response.data.tokens.refreshToken);
+
+        history.push('/');
+        setLogin(true);
+        setMemberId(response.data.memberId);
+      } else {
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
+  };
 
   return (
     <>
