@@ -1,22 +1,21 @@
 // GoogleButton.js
 
+// eslint-disable-next-line no-unused-vars
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import jwtDecode from 'jwt-decode';
-import React, { useRef } from 'react';
+// import React, { useRef } from 'react';
 // import { userLogin, userSignup } from '../apis/users';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+// import { useRecoilValue, useSetRecoilState } from 'recoil';
 // import { isLoginState, isRegisterModalState, userLoginInfo } from '../store/atom';
 // import { useNavigate } from 'react-router-dom';
 // import HeaderButton from '../components/HeaderButton';
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 
 export default function GoogleButton() {
-  //   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   let history = useHistory();
-  function handleClick() {
-    history.push('/home');
-  }
+
   //   const setRegisterModalState = useSetRecoilState(isRegisterModalState);
   //   const setUserLoginInfo = useSetRecoilState(userLoginInfo);
   //   const setIsLogin = useRecoilValue(isLoginState);

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import { styled } from 'styled-components';
 import theme from '../theme';
 import { AiOutlineSend } from 'react-icons/ai';

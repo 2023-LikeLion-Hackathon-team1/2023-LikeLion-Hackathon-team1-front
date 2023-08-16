@@ -201,6 +201,7 @@ export default function Main() {
   const current_categoryId = 1;
   const userId = 1;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: questions } = useQuery<IQuestion[]>(
     ['GetAllQuestion', GetAllQuestion],
     () => GetAllQuestion().then((response) => response.data),

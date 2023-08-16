@@ -1,8 +1,7 @@
 import { styled } from 'styled-components';
 import Divider from '@mui/material/Divider';
 import CategoryHeader from '../components/CategoryHeader';
-import { ChangeEvent, useEffect, useState } from 'react';
-import CameraAltTwoToneIcon from '@mui/icons-material/CameraAltTwoTone';
+import { useEffect, useState } from 'react';
 import theme from '../theme';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -40,13 +39,6 @@ const ContentInput = styled.textarea`
   }
 `;
 
-const SmallImg = styled.img`
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-left: 10px;
-`;
-
 const BottomBar = styled.div<BottomBarProps>`
   position: fixed;
   bottom: ${(props) => props.keyboardHeight}px; // Use a prop for keyboard height
@@ -75,8 +67,11 @@ interface BottomBarProps {
 export default function WriteQuestion() {
   const history = useHistory();
   const [keyboardHeight, setKeyboardHeight] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [title, setTitle] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [content, setContent] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
   // const [selectedImage, setSelectedImage] = useState<string | null>(null); // Specify the type for selectedImage
 
@@ -89,7 +84,9 @@ export default function WriteQuestion() {
         // 여기에 필요한 다른 데이터도 추가 가능
       })
       .then((response) => console.log(response.data));
+
     history.push('/');
+    return response;
   };
 
   useEffect(() => {

@@ -85,16 +85,6 @@ const Icons = styled.div`
   color: gray;
 `;
 
-const Response = styled.div`
-  display: flex;
-  gap: 5px;
-  color: gray;
-  font-size: 12px;
-`;
-const Like = styled.div`
-  color: ${theme.palette.mono.gray3};
-`;
-
 export default function AnswerCard({ answer }: { answer: Answers }) {
   const [timeAgo, setTimeAgo] = useState<string>('');
   const [isLiked, setIsLiked] = useState<boolean>(false); // Ne

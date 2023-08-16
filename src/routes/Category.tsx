@@ -6,26 +6,8 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import { GetAllCategory } from '../apis/Questions';
 
-const categoryList = [
-  { id: 1, name: '🍒 디자인' },
-  { id: 2, name: '💻 IT' },
-  { id: 3, name: '🍳 요리' },
-  { id: 4, name: '💪 운동' },
-  { id: 5, name: '📘 자기계발' },
-  { id: 6, name: '🇬🇧 영어' },
-  { id: 7, name: '👗 패션' },
-  { id: 8, name: '🎵 음악' },
-  { id: 9, name: '🍔 음식' },
-  { id: 10, name: '💄 뷰티' },
-  { id: 11, name: '🎮 게임' },
-];
-
 interface CategoryButtonProps {
   isSelected: boolean;
-}
-interface ICategories {
-  id: number;
-  name: string;
 }
 
 interface BigCategory {
@@ -135,6 +117,7 @@ export default function Category() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: categoryList } = useQuery<BigCategory[]>(
     ['GetAllQuestion', GetAllCategory],
     () => GetAllCategory().then((response) => response.data),

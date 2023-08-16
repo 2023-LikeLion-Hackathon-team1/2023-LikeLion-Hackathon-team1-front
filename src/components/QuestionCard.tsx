@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import PsychologyAltOutlinedIcon from '@mui/icons-material/PsychologyAltOutlined';
 import { BsChat } from 'react-icons/bs';
 import { BiCircle } from 'react-icons/bi';
 import { FiBookmark } from 'react-icons/fi';

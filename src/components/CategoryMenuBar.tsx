@@ -55,6 +55,7 @@ const CategoryButton = styled.div<CategoryButtonProps>`
 export default function CategoryMenuBar() {
   const [choose, setChoose] = React.useState('업로드');
   const [selectedCategory, setSelectedCategory] = useRecoilState(CategoryState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
 
   const handleChange = (event: SelectChangeEvent<unknown>) => {
@@ -66,6 +67,7 @@ export default function CategoryMenuBar() {
     setSelectedCategoryId(id);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: categoryList } = useQuery<Icategory[]>(
     ['GetMyCategory', GetMyCategory],
     () => GetMyCategory(1).then((response) => response.data),

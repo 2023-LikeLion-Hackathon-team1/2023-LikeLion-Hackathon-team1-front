@@ -230,6 +230,7 @@ export default function QuestionDetail() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const categoryIdNumber = parseInt(categoryId, 10);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const questionIdNumber = parseInt(questionId, 10);
 
   // const { isLoading, data: categoryList } = useQuery<IQuestion[]>(

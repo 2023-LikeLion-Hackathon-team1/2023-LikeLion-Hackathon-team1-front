@@ -32,6 +32,7 @@ export default function CategoryHeader() {
     setSelectedCategory(event.target.value as string);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: categoryList } = useQuery<Icategory[]>(
     ['GetMyCategory', GetMyCategory],
     () => GetMyCategory(1).then((response) => response.data),
