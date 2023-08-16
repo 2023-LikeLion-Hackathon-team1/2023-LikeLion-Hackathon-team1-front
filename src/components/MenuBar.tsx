@@ -17,10 +17,11 @@ const BottomBar = styled.div`
   position: fixed;
   bottom: 0;
   min-width: 100%;
-  height: 70px;
+  height: 50px;
   color: black;
   padding: 10px;
   background-color: white;
+  /* background-color: rgba(255, 255, 255, 0.8); */
 `;
 
 const StyledLink = styled(Link)<{ active: boolean }>`
@@ -29,7 +30,7 @@ const StyledLink = styled(Link)<{ active: boolean }>`
 
 const Block = styled.p`
   display: flex;
-  height: 70px;
+  height: 50px;
   background-color: white;
 `;
 

@@ -33,7 +33,7 @@ function Router() {
             <Route exact path="/category">
               <Category />
             </Route>
-            <Route exact path="/:categoryId/:questionId">
+            <Route exact path="/question/:questionId">
               <QuestionDetail />
             </Route>
             <Route exact path="/category/:categoryId/write/:userId">

@@ -4,20 +4,13 @@ import { CategoryState } from '../store/atom';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import { GetMyCategory } from '../apis/Questions';
+import { useQuery } from 'react-query';
 
-const categoryList = [
-  { id: 1, name: '🍒 디자인' },
-  { id: 2, name: '💻 IT' },
-  { id: 3, name: '🍳 요리' },
-  { id: 4, name: '💪 운동' },
-  { id: 5, name: '📘 자기계발' },
-  { id: 6, name: '🇬🇧 영어' },
-  { id: 7, name: '👗 패션' },
-  { id: 8, name: '🎵 음악' },
-  { id: 9, name: '🍔 음식' },
-  { id: 10, name: '💄 뷰티' },
-  { id: 11, name: '🎮 게임' },
-];
+interface Icategory {
+  id: number;
+  name: string;
+}
 
 const Header = styled.div`
   width: 100vw;
@@ -38,6 +31,16 @@ export default function CategoryHeader() {
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     setSelectedCategory(event.target.value as string);
   };
+
+  const { isLoading, data: categoryList } = useQuery<Icategory[]>(
+    ['GetMyCategory', GetMyCategory],
+    () => GetMyCategory(1).then((response) => response.data),
+    {
+      onSuccess: (data) => {
+        console.log('GetMyCategory', data);
+      },
+    },
+  );
 
   return (
     <>
@@ -66,7 +69,7 @@ export default function CategoryHeader() {
               //   },
             }}
           >
-            {categoryList.map((item) => (
+            {(categoryList as Icategory[])?.map((item: Icategory) => (
               <MenuItem
                 value={item.name}
                 sx={{

@@ -6,20 +6,13 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useRecoilState } from 'recoil';
 import { CategoryState } from '../store/atom';
+import { useQuery } from 'react-query';
+import { GetMyCategory } from '../apis/Questions';
 
-const categoryList = [
-  { id: 1, name: '🍒 디자인' },
-  { id: 2, name: '💻 IT' },
-  { id: 3, name: '🍳 요리' },
-  { id: 4, name: '💪 운동' },
-  { id: 5, name: '📘 자기계발' },
-  { id: 6, name: '🇬🇧 영어' },
-  { id: 7, name: '👗 패션' },
-  { id: 8, name: '🎵 음악' },
-  { id: 9, name: '🍔 음식' },
-  { id: 10, name: '💄 뷰티' },
-  { id: 11, name: '🎮 게임' },
-];
+interface Icategory {
+  id: number;
+  name: string;
+}
 
 interface CategoryButtonProps {
   isSelected: boolean;
@@ -27,7 +20,7 @@ interface CategoryButtonProps {
 
 const CategoryMenuBarWrapper = styled.div`
   display: flex;
-  padding-top: 5px;
+  padding: 5px 0px;
   overflow-x: auto;
   width: 100%;
   align-items: center;
@@ -71,6 +64,16 @@ export default function CategoryMenuBar() {
     setSelectedCategory(category);
   };
 
+  const { isLoading, data: categoryList } = useQuery<Icategory[]>(
+    ['GetMyCategory', GetMyCategory],
+    () => GetMyCategory(1).then((response) => response.data),
+    {
+      onSuccess: (data) => {
+        console.log('GetMyCategory', data);
+      },
+    },
+  );
+
   return (
     <>
       <CategoryMenuBarWrapper>
@@ -111,7 +114,7 @@ export default function CategoryMenuBar() {
             >
               업로드
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               value="조회수"
               sx={{
                 fontSize: '12px',
@@ -124,7 +127,7 @@ export default function CategoryMenuBar() {
               }}
             >
               조회수
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               value="궁금해요"
               sx={{
@@ -142,7 +145,7 @@ export default function CategoryMenuBar() {
           </Select>
         </FormControl>
 
-        {categoryList.map((category) => (
+        {(categoryList as Icategory[])?.map((category: Icategory) => (
           <CategoryButton
             key={category.id}
             isSelected={selectedCategory === category.name}

@@ -10,6 +10,7 @@ const TopHeader = styled.div`
   padding: 20px;
   height: 70px;
   background-color: white;
+  z-index: 100;
 `;
 
 const Logo = styled.img`
