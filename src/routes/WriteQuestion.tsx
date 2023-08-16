@@ -4,6 +4,8 @@ import CategoryHeader from '../components/CategoryHeader';
 import { ChangeEvent, useEffect, useState } from 'react';
 import CameraAltTwoToneIcon from '@mui/icons-material/CameraAltTwoTone';
 import theme from '../theme';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const Form = styled.form`
   display: flex;
@@ -68,7 +70,20 @@ interface BottomBarProps {
 }
 
 export default function WriteQuestion() {
+  const history = useHistory();
   const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [selectedImage, setSelectedImage] = useState<string | null>(null); // Specify the type for selectedImage
+
+  const subminQuestion = async () => {
+    // const response = await axios.post('/api/question', {
+    //   title: title,
+    //   content: content,
+    //   // 여기에 필요한 다른 데이터도 추가 가능
+    // });
+    history.push('/');
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -84,8 +99,6 @@ export default function WriteQuestion() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  const [selectedImage, setSelectedImage] = useState<string | null>(null); // Specify the type for selectedImage
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     // Add type annotation for event
@@ -119,7 +132,7 @@ export default function WriteQuestion() {
             />
             <CameraAltTwoToneIcon style={{ color: theme.palette.color.main }} />
           </label>
-          <TextButton> 등록 </TextButton>
+          <TextButton onClick={subminQuestion}> 등록 </TextButton>
         </BottomBar>
       </Form>
     </>

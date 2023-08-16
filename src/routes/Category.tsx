@@ -2,6 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+import { GetAllCategory } from '../apis/Questions';
 
 const categoryList = [
   { id: 1, name: '🍒 디자인' },
@@ -16,6 +19,25 @@ const categoryList = [
   { id: 10, name: '💄 뷰티' },
   { id: 11, name: '🎮 게임' },
 ];
+
+interface CategoryButtonProps {
+  isSelected: boolean;
+}
+interface ICategories {
+  id: number;
+  name: string;
+}
+
+interface BigCategory {
+  big3_category_id: number;
+  name: string;
+  categoryList: SubCategory[];
+}
+
+interface SubCategory {
+  category_id: number;
+  name: string;
+}
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -61,15 +83,6 @@ const ButtonsContainer = styled.div`
   margin-top: 40px;
 `;
 
-interface CategoryButtonProps {
-  isSelected: boolean;
-}
-
-// interface ICategories {
-//   id: number;
-//   name: string;
-// }
-
 const CategoryButton = styled.button<CategoryButtonProps>`
   margin: 5px;
   padding: 10px 20px;
@@ -79,12 +92,15 @@ const CategoryButton = styled.button<CategoryButtonProps>`
   border: ${(props) => (props.isSelected ? `1px solid ${theme.palette.color.main}` : '1px solid lightgray')};
   border-radius: 100px;
   cursor: pointer;
-
-  /* &:hover {
-    background-color: #45a049;
-    color: #ffffff;
-  } */
 `;
+
+const SubCategoryButton = styled(CategoryButton)`
+  background-color: ${(props) => (props.isSelected ? theme.palette.color.green4 : '#ffffff')};
+  color: ${(props) => (props.isSelected ? theme.palette.color.main : 'black')};
+  border: ${(props) => (props.isSelected ? `none` : '1px solid lightgray')};
+`;
+
+const SubCategoryButtons = styled.div``;
 
 const Result = styled.div`
   margin-top: 30px;
@@ -114,24 +130,51 @@ const Count = styled.span`
 `;
 
 export default function Category() {
+  const member_id = 1; // TODO 임시로 1로 설정
   // const [isLoading, data] = useQuery<ICategories[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
 
-  const handleCategoryClick = (category: string) => {
+  const { isLoading, data: categoryList } = useQuery<BigCategory[]>(
+    ['GetAllQuestion', GetAllCategory],
+    () => GetAllCategory().then((response) => response.data),
+    {
+      onSuccess: (data) => {
+        console.log('GetAllCategory', data);
+      },
+    },
+  );
+
+  const handleCategoryClick = (categoryId: number) => {
+    if (expandedCategories.includes(categoryId)) {
+      setExpandedCategories(expandedCategories.filter((id) => id !== categoryId));
+    } else {
+      setExpandedCategories([...expandedCategories, categoryId]);
+    }
+  };
+
+  const handleSubCategoryClick = (category: string, id: number) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((item) => item !== category));
     } else {
       setSelectedCategories([...selectedCategories, category]);
     }
-    // sendDataToServer(category);
+    console.log(selectedCategories);
+    sendDataToServer(id);
   };
 
-  // const sendDataToServer = (category: string) => {
-  //   // 여기에 서버로 데이터를 보내는 로직을 구현합니다.
-  //   // 예를 들어, fetch API를 사용하여 데이터를 보낼 수 있습니다.
-  //   // 서버에서 해당 카테고리에 대한 처리를 진행합니다.
-  //   console.log(`서버로 전송할 데이터: ${category}`);
-  // };
+  const sendDataToServer = async (id: number) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/category/like/${id}/${member_id}`);
+      console.log('API response:', response.data);
+      // Handle successful API response here
+    } catch (error) {
+      console.error('Error sending data to server:', error);
+      // Handle error here
+    }
+    // /category/like/{category_id}/{member_id}
+    console.log(`서버로 전송할 데이터: ${id}`);
+  };
 
   return (
     <Page>
@@ -139,15 +182,40 @@ export default function Category() {
         <Container>
           <Title>관심사를 취미를 선택해주세요</Title>
           <SubTitle> 맞춤 카테고리를 형성하기 위함입니다. </SubTitle>
-          <ButtonsContainer>
+          {/* <ButtonsContainer>
             {categoryList.map((category) => (
               <CategoryButton
                 key={category.id}
                 isSelected={selectedCategories.includes(category.name)}
-                onClick={() => handleCategoryClick(category.name)}
+                onClick={() => handleCategoryClick(category.name, category.id)}
               >
                 {category.name}
               </CategoryButton>
+            ))}
+          </ButtonsContainer> */}
+          <ButtonsContainer>
+            {(categoryList as BigCategory[])?.map((bigCategory: BigCategory) => (
+              <div key={bigCategory.big3_category_id}>
+                <CategoryButton
+                  isSelected={expandedCategories.includes(bigCategory.big3_category_id)}
+                  onClick={() => handleCategoryClick(bigCategory.big3_category_id)}
+                >
+                  {bigCategory.name}
+                </CategoryButton>
+                {expandedCategories.includes(bigCategory.big3_category_id) && (
+                  <SubCategoryButtons>
+                    {bigCategory.categoryList.map((subCategory) => (
+                      <SubCategoryButton
+                        key={subCategory.category_id}
+                        isSelected={selectedCategories.includes(subCategory.name)}
+                        onClick={() => handleSubCategoryClick(subCategory.name, subCategory.category_id)}
+                      >
+                        {subCategory.name}
+                      </SubCategoryButton>
+                    ))}
+                  </SubCategoryButtons>
+                )}
+              </div>
             ))}
           </ButtonsContainer>
           <Result>
