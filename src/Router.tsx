@@ -89,6 +89,7 @@ import SignUp from './routes/SignUp';
 import AddName from './routes/AddName';
 import MyPage from './routes/MyPage';
 import { IsLoginState } from './store/atom';
+import BookMarkDetail from './routes/BookMarkDetail';
 
 const Page = styled.div`
   display: flex;
@@ -142,6 +143,9 @@ function Router() {
                 </Route>
                 <Route exact path="/bookmark">
                   <Bookmark />
+                </Route>
+                <Route exact path="/bookmark/:bookmarkfoldId">
+                  <BookMarkDetail />
                 </Route>
                 <Route exact path="/mypage">
                   <MyPage />
