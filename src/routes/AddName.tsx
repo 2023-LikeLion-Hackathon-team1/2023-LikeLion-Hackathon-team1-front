@@ -113,12 +113,12 @@ export default function AddName() {
     <Page>
       <Slide>
         <Container>
-          <Title>가입을 축하드려요 :) </Title>
+          <Title>만나서 반가워요 :) </Title>
           <Title> 어떻게 불러드리면 될까요?</Title>
           <Form onSubmit={handleSubmit}>
             <Input
               type="text"
-              placeholder="이름을 입력해주세요"
+              placeholder="5글자 이내로 입력해주세요."
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
