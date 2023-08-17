@@ -65,6 +65,7 @@ interface BottomBarProps {
 }
 
 export default function WriteQuestion() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const history = useHistory();
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -78,6 +79,7 @@ export default function WriteQuestion() {
   // const [selectedImage, setSelectedImage] = useState<string | null>(null); // Specify the type for selectedImage
 
   const submitQuestion = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const response = await axios
       .post(`${BASE_URL}/questions/${selectedCategoryId}/${memberId}`, {
         // /questions/{category_id}/{questioner_member_id}

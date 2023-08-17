@@ -124,6 +124,7 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
     }
 
     setTimeAgo(timeAgoStr);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answer.create_date]);
 
   const handleLikeClick = async (answer_id: number) => {
