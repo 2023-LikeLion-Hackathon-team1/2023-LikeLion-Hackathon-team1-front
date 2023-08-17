@@ -38,3 +38,15 @@ export const GetAnswerLike = async (answerId: number, memberId: number) => {
   const response = await axios.get(`${BASE_URL}/answer/like/${answerId}/${memberId}`);
   return response;
 };
+
+// Bookmark
+
+export const GetBookmarkList = async (memberId: number) => {
+  const response = await axios.get(`${BASE_URL}/scrap/scrapFolder-list/${memberId}`);
+  return response;
+};
+
+export const GetmarksList = async (scrapfoldId: number) => {
+  const response = await axios.get(`${BASE_URL}/scrap/scrapQuestion-list/${scrapfoldId}`);
+  return response;
+};
