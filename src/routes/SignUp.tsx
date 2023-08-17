@@ -11,6 +11,7 @@ const Div = styled.div`
   text-align: left;
   font-size: 40px;
   font-family: var(--font-avenir);
+  overflow: hidden;
 `;
 
 const Container = styled.div`
