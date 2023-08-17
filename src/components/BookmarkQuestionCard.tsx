@@ -75,31 +75,6 @@ const Title = styled.div`
   margin-top: 15px;
 `;
 
-const Content = styled.div`
-  font-size: 14px;
-  color: gray;
-  margin-top: 5px;
-  line-height: 1.5;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-`;
-
-const Icons = styled.div`
-  display: flex;
-  align-items: center;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  color: gray;
-  /* height: 20px; */
-  font-size: 12px;
-`;
-
 const Memos = styled.div`
   display: flex;
   gap: 10px;
@@ -115,8 +90,7 @@ const Memo = styled.div``;
 export default function BookmarkQuestionCard({ scrap }: { scrap: ScrapInfo }) {
   // const [memberId, setMemberId] = useRecoilState(MemberIdState);
   const [timeAgo, setTimeAgo] = useState<string>('');
-  const [isLiked, setIsLiked] = useState<boolean>(false); // TODO:: 좋아요 기능 구현
-  const [isBooked, setIsBooked] = useState<boolean>(false); // TODO:: 북마크 기능 구현
+  const questionCreateDate = scrap?.question_info[0].create_date;
 
   useEffect(() => {
     const currentDate = new Date();
@@ -140,7 +114,8 @@ export default function BookmarkQuestionCard({ scrap }: { scrap: ScrapInfo }) {
     }
 
     setTimeAgo(timeAgoStr);
-  }, [scrap?.question_info[0].create_date]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [questionCreateDate]);
 
   return (
     <Card>

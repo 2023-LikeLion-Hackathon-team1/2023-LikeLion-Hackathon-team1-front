@@ -39,7 +39,6 @@ const Bg = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  z-index: -1;
   height: 100vh;
 `;
 
@@ -57,7 +56,11 @@ const Vector = styled.img`
   width: 70px;
   top: 130px;
   right: 0;
-  z-index: 0;
+`;
+
+const Block = styled.div`
+  width: 100%;
+  height: 50px;
 `;
 
 const StyledLink = styled(Link)<IStyledLinkProps>`
@@ -124,6 +127,7 @@ export default function Main() {
         <FloatingButton />
       </Link>
       <div style={{ height: '20px' }} />
+      <Block />
       <MenuBar />
     </Bg>
   );

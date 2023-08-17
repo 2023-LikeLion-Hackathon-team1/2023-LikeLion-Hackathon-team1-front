@@ -47,6 +47,7 @@ export default function BookMarkDetail() {
 
   const scrapfoldIdNumber = parseInt(bookmarkfoldId, 10);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: scrapQuestionList } = useQuery<Iscrap[]>(
     ['GetmarksList', GetmarksList],
     () => GetmarksList(scrapfoldIdNumber).then((response) => response.data),

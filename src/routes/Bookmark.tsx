@@ -43,9 +43,9 @@ export default function Bookmark() {
       <SubHeader title="스크랩 보기" />
       <Container>
         {(bookmarkList as IBookmark[])?.map((bookmark: IBookmark) => (
-          <Link to={`/bookmark/${bookmark.scrap_folder_id}`}>
-            <BookmarkCard key={bookmark?.scrap_folder_id} bookmark={bookmark} />
-          </Link>
+          // <Link to={`/bookmark/${bookmark.scrap_folder_id}`}>
+          <BookmarkCard key={bookmark?.scrap_folder_id} bookmark={bookmark} />
+          // </Link>
         ))}
       </Container>
       <MenuBar />

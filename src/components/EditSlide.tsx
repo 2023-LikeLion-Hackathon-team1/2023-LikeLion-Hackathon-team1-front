@@ -1,83 +1,88 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
+import { useState } from 'react';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-// import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import styled from 'styled-components';
-import LogoImg from '../imgs/logo.png';
+import { HiOutlinePencil } from 'react-icons/hi';
+import { HiOutlineTrash } from 'react-icons/hi';
+import { styled } from 'styled-components';
+import theme from '../theme';
 
-const PopUpContainer = styled.div`
+const Button = styled.button`
+  font-size: 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 200px;
-  width: 350px;
-`;
-
-const PopLogo = styled.img`
-  width: 50px;
-`;
-
-const PopText = styled.div`
-  text-align: center;
-  margin-top: 20px;
+  gap: 10px;
+  background-color: white;
+  border: none;
+  &:hover {
+    color: ${theme.palette.color.main}; /* Change color on hover */
+  }
+  &:active {
+    color: ${theme.palette.color.main};
+  }
 `;
 
 export default function EditSlide() {
-  const [open, setOpen] = React.useState(false);
+  const [state, setState] = useState<{ [key: string]: boolean }>({ bottom: false });
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const toggleDrawer =
+    (anchor: string, open: boolean) =>
+    (event: React.KeyboardEvent<Element> | React.MouseEvent<Element, MouseEvent>) => {
+      if (event.type === 'keydown') {
+        const keyboardEvent = event as React.KeyboardEvent<Element>;
+        if (keyboardEvent.key === 'Tab' || keyboardEvent.key === 'Shift') {
+          return;
+        }
+      }
 
-  // const button = document.querySelector('#your-button-id');
-  const postBacker = async () => {
-    try {
-      //   const response = axios.post(`http://localhost:8080/backer/15/${props.funding_id}`, {
-      //     fund_num: 1,
-      //   });
-      setOpen(true);
+      setState({ ...state, [anchor]: open });
+    };
 
-      //   console.log(response); // 응답 확인 (선택사항)
-    } catch (error) {
-      console.error(error);
-      // 에러 처리
-    }
-  };
+  const list = (anchor: string) => (
+    <div
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+      style={{ display: 'flex', justifyContent: 'center' }}
+    >
+      <div
+        style={{
+          width: '80vw',
+          height: '200px',
+          borderRadius: '30%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          gap: '50px',
+        }}
+      >
+        <Button>
+          <HiOutlinePencil /> 이름 변경하기
+        </Button>
+        <Button>
+          <HiOutlineTrash /> 삭제
+        </Button>
+      </div>
+    </div>
+  );
 
   return (
     <div>
-      <MoreHorizIcon onClick={postBacker} />
-      {/* <Buy onClick={postBacker}> 이 프로젝트 후원하기</Buy> */}
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        maxWidth="md"
-      >
-        <DialogTitle id="alert-dialog-title">
-          <PopUpContainer>
-            <PopLogo src={LogoImg} />
-            <PopText>
-              예약 구매가 완료되었습니다.
-              <br />
-              프로젝트에 후원해주셔서 감사합니다.
-            </PopText>
-          </PopUpContainer>
-        </DialogTitle>
-        <DialogActions sx={{ display: 'flex', justifyItems: 'center' }}>
-          <Button onClick={handleClose} autoFocus sx={{ backgroundColor: 'red' }}>
-            펀딩 계속하기
-          </Button>
-        </DialogActions>
-      </Dialog>
+      {['bottom'].map((anchor) => (
+        <React.Fragment key={anchor}>
+          <div onClick={toggleDrawer(anchor, true)}>
+            <MoreHorizIcon style={{ color: theme.palette.color.main }} />
+          </div>
+          <SwipeableDrawer
+            anchor={anchor as 'bottom'}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+            onOpen={toggleDrawer(anchor, true)}
+          >
+            {list(anchor)}
+          </SwipeableDrawer>
+        </React.Fragment>
+      ))}
     </div>
   );
 }
