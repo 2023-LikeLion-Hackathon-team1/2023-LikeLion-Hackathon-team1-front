@@ -3,18 +3,19 @@ import { styled } from 'styled-components';
 import theme from '../theme';
 import EditSlide from './EditSlide';
 
-interface Bookmark {
-  bookmarkId: number;
-  userId: number;
-  title: string;
-  itemNum: number;
+interface IBookmark {
+  scrap_folder_id: number;
+  scrap_folder_name: string;
+  scrap_question_num: number;
 }
 
 const Card = styled.div`
-  width: 100vw;
+  width: 90vw;
   padding: 20px 30px;
   display: flex;
   justify-content: space-between;
+  border: 1px solid ${theme.palette.mono.gray4};
+  box-shadow: '0px 8px 15px rgba(128, 128, 128, 0.2)';
 `;
 
 const Title = styled.div`
@@ -29,13 +30,13 @@ const Num = styled.div`
   font-weight: 500;
 `;
 
-export default function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
+export default function BookmarkCard({ bookmark }: { bookmark: IBookmark }) {
   return (
     <>
       <Card>
         <div>
-          <Title> {bookmark.title} </Title>
-          <Num> {bookmark.itemNum} questions </Num>
+          <Title> {bookmark?.scrap_folder_name} </Title>
+          <Num> {bookmark?.scrap_question_num} questions </Num>
         </div>
         {/* <MoreHorizIcon /> */}
         <EditSlide />
