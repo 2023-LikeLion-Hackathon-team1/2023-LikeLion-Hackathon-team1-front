@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import theme from '../theme';
 import GoogleButton from '../auth/GoogleButton';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Div = styled.div`
   position: relative;
@@ -43,6 +45,17 @@ const LoginButton = styled.div`
 `;
 
 export default function SignUp() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [showSplash, setShowSplash] = useState(true);
+  const history = useHistory();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+      history.push('/first/signUp/AddName'); // Redirect to '/first/signUp' after 3 seconds
+    }, 3000); // 3 seconds
+
+    return () => clearTimeout(timer);
+  }, [history]);
   return (
     <Div>
       <Container>
