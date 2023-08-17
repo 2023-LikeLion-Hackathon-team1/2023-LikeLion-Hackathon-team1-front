@@ -48,12 +48,14 @@ export default function MenuBar() {
     <>
       <Block />
       <BottomBar>
-        <StyledLink to="/" active={activeIcon === 'home'} onClick={() => handleIconClick('home')}>
-          <HomeOutlinedIcon />
-        </StyledLink>
-        <StyledLink to="/bookmark" active={activeIcon === 'bookmark'} onClick={() => handleIconClick('bookmark')}>
-          <BookmarkBorderOutlinedIcon />
-        </StyledLink>
+        <Link to="/" onClick={() => handleIconClick('home')}>
+          <HomeOutlinedIcon style={{ color: activeIcon === 'home' ? theme.palette.color.main : 'lightgray' }} />
+        </Link>
+        <Link to="/bookmark" onClick={() => handleIconClick('bookmark')}>
+          <BookmarkBorderOutlinedIcon
+            style={{ color: activeIcon === 'bookmark' ? theme.palette.color.main : 'lightgray' }}
+          />
+        </Link>
         <StyledLink
           to="/category/:categoryId/search"
           active={activeIcon === 'search'}
