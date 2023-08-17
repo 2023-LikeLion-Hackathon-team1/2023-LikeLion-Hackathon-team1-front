@@ -1,52 +1,53 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Link } from 'react-router-dom';
 import BookmarkCard from '../components/BookmarkCard';
 import SubHeader from '../components/SubHeader';
 import FloatingButton from '../components/FloatingButton';
 import MenuBar from '../components/MenuBar';
+import { useQuery } from 'react-query';
+import { GetBookmarkList } from '../apis/Questions';
+import { useRecoilState } from 'recoil';
+import { MemberIdState } from '../store/atom';
+import { styled } from 'styled-components';
 
-const bookmarks: IBookmark[] = [
-  {
-    bookmarkId: 1,
-    userId: 1,
-    title: '프론트엔드',
-    itemNum: 3,
-  },
-  {
-    bookmarkId: 2,
-    userId: 1,
-    title: 'UX/UI 참고',
-    itemNum: 2,
-  },
-  {
-    bookmarkId: 3,
-    userId: 1,
-    title: 'IT 개발 꿀팁',
-    itemNum: 8,
-  },
-  {
-    bookmarkId: 4,
-    userId: 1,
-    title: '레퍼런스',
-    itemNum: 5,
-  },
-];
 interface IBookmark {
-  bookmarkId: number;
-  userId: number;
-  title: string;
-  itemNum: number;
+  scrap_folder_id: number;
+  scrap_folder_name: string;
+  scrap_question_num: number;
 }
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  gap: 10px;
+`;
+
 export default function Bookmark() {
+  const [memberId, setMemberId] = useRecoilState(MemberIdState);
+
+  const { isLoading, data: bookmarkList } = useQuery<IBookmark[]>(
+    ['GetBookmarkList', GetBookmarkList],
+    () => GetBookmarkList(memberId).then((response) => response.data),
+    {
+      onSuccess: (data) => {
+        console.log('GetBookmarkList', data);
+      },
+    },
+  );
+
   return (
     <>
       <SubHeader title="스크랩 보기" />
-      {bookmarks.map((bookmark) => (
-        <BookmarkCard key={bookmark.bookmarkId} bookmark={bookmark} />
-      ))}
-      <Link to={`/category`}>
-        <FloatingButton />
-      </Link>
+      <Container>
+        {(bookmarkList as IBookmark[])?.map((bookmark: IBookmark) => (
+          <Link to={`/bookmark/${bookmark.scrap_folder_id}`}>
+            <BookmarkCard key={bookmark?.scrap_folder_id} bookmark={bookmark} />
+          </Link>
+        ))}
+      </Container>
       <MenuBar />
     </>
   );
