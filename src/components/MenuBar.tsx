@@ -21,6 +21,7 @@ const BottomBar = styled.div`
   color: black;
   padding: 10px;
   background-color: white;
+  border-top: 1px solid ${theme.palette.mono.gray4};
   /* background-color: rgba(255, 255, 255, 0.8); */
 `;
 
@@ -32,6 +33,8 @@ const Block = styled.p`
   display: flex;
   height: 50px;
   background-color: white;
+  position: fixed;
+  bottom: 0;
 `;
 
 export default function MenuBar() {

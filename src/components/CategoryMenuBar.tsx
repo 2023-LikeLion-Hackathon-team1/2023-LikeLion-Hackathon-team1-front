@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
@@ -5,12 +6,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useRecoilState } from 'recoil';
-import { CategoryState, CategoryIdState } from '../store/atom';
+import { CategoryState, CategoryIdState, MemberIdState } from '../store/atom';
 import { useQuery } from 'react-query';
 import { GetMyCategory } from '../apis/Questions';
 
 interface Icategory {
-  id: number;
+  category_id: number;
   name: string;
 }
 
@@ -57,20 +58,22 @@ export default function CategoryMenuBar() {
   const [selectedCategory, setSelectedCategory] = useRecoilState(CategoryState);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
+  const [memberId, setMemberId] = useRecoilState(MemberIdState);
 
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     setChoose(event.target.value as string);
   };
 
-  const handleCategoryClick = (category: string, id: number) => {
+  const handleCategoryClick = (category: string, categoryId: number) => {
     setSelectedCategory(category);
-    setSelectedCategoryId(id);
+    setSelectedCategoryId(categoryId);
+    console.log('MENUBAR', selectedCategoryId);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: categoryList } = useQuery<Icategory[]>(
     ['GetMyCategory', GetMyCategory],
-    () => GetMyCategory(1).then((response) => response.data),
+    () => GetMyCategory(memberId).then((response) => response.data),
     {
       onSuccess: (data) => {
         console.log('GetMyCategory', data);
@@ -118,20 +121,6 @@ export default function CategoryMenuBar() {
             >
               업로드
             </MenuItem>
-            {/* <MenuItem
-              value="조회수"
-              sx={{
-                fontSize: '12px',
-                '&.Mui-selected': {
-                  backgroundColor: `${theme.palette.color.green4}`,
-                  '&:hover': {
-                    backgroundColor: `${theme.palette.color.green4}`,
-                  },
-                },
-              }}
-            >
-              조회수
-            </MenuItem> */}
             <MenuItem
               value="궁금해요"
               sx={{
@@ -151,9 +140,9 @@ export default function CategoryMenuBar() {
 
         {(categoryList as Icategory[])?.map((category: Icategory) => (
           <CategoryButton
-            key={category.id}
+            key={category.category_id}
             isSelected={selectedCategory === category.name}
-            onClick={() => handleCategoryClick(category.name, category.id)}
+            onClick={() => handleCategoryClick(category.name, category.category_id)}
           >
             {category.name}
           </CategoryButton>

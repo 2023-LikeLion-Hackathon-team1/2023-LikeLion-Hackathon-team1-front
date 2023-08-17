@@ -4,8 +4,12 @@ import { BsChat } from 'react-icons/bs';
 import { BiCircle } from 'react-icons/bi';
 import { FiBookmark } from 'react-icons/fi';
 import theme from '../theme';
+// import { GetBooked } from '../apis/Questions';
+// import { useRecoilState } from 'recoil';
+// import { MemberIdState } from '../store/atom';
 
 interface IQuestion {
+  questioner_image: string;
   question_id: number;
   category_id: number;
   questioner_id: number;
@@ -16,6 +20,7 @@ interface IQuestion {
   create_date: string;
   answer_num: number | null;
   questioner_name: string;
+  is_selection: boolean;
 }
 
 interface QuestionCardProps {
@@ -47,6 +52,7 @@ const ProfileColumn = styled.div`
 
 const ProfileImg = styled.img`
   width: 32px;
+  height: 32px;
   border-radius: 50%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `;
@@ -93,6 +99,7 @@ const Icons = styled.div`
 `;
 
 export default function QuestionCard({ question, isSummary }: QuestionCardProps) {
+  // const [memberId, setMemberId] = useRecoilState(MemberIdState);
   const [timeAgo, setTimeAgo] = useState<string>('');
   const [isLiked, setIsLiked] = useState<boolean>(false); // TODO:: 좋아요 기능 구현
   const [isBooked, setIsBooked] = useState<boolean>(false); // TODO:: 북마크 기능 구현
@@ -148,35 +155,29 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
 
     // Call your API here to handle like post
     // Example: You can use the fetch function to make the API call
-    // if (!isLiked) {
-    //   fetch('your_api_endpoint_here', {
-    //     method: 'POST', // or 'GET' depending on your API
-    //     // ... (other necessary options)
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       // Handle the API response if needed
-    //     })
-    //     .catch((error) => {
-    //       // Handle errors if needed
-    //     });
-    // }
+    if (!isBooked) {
+      // GetBooked(, question.question_id, memberId);
+    }
   };
 
-  const userName = '김철수'; // TODO:: 유저 이름 받아오기
+  console.log(question);
 
   return (
     <Card isSummary={isSummary}>
       <Profile>
-        {/* <ProfileImg src={question?.userImage || undefined} /> */}
+        <ProfileImg src={question?.questioner_image || undefined} />
         <ProfileColumn>
-          <ProfileName>{userName}</ProfileName>
+          <ProfileName>{question?.questioner_name}</ProfileName>
           <Time>{timeAgo}</Time>
         </ProfileColumn>
       </Profile>
-      <Title> {question?.question_title} </Title>
+      <Title>
+        {question?.question_title && question?.question_title.length > 29
+          ? question?.question_title.slice(0, 29) + '...'
+          : question?.question_title}
+      </Title>
       <Content>
-        {question?.question_content.length > 29 && isSummary === true
+        {question?.question_content && question?.question_content.length > 29 && isSummary === true
           ? question?.question_content.slice(0, 29) + '...'
           : question?.question_content}
       </Content>

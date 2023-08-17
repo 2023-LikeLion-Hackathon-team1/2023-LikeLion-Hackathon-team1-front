@@ -2,6 +2,10 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { MemberIdState } from '../store/atom';
+import axios from 'axios';
+import { BASE_URL } from '../apis/Questions';
 
 const Page = styled.div`
   position: relative;
@@ -77,11 +81,32 @@ const SelectButton = styled.button`
 
 export default function AddName() {
   const [name, setName] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [memberId, setMemberId] = useRecoilState(MemberIdState);
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-    // Here you can implement the code to post the name to your backend
-    console.log('Name submitted:', name);
+
+    try {
+      const response = await axios.patch(`${BASE_URL}/members/${memberId}/update-name`, {
+        newName: name,
+      });
+
+      if (response.status !== 200) {
+        throw new Error('API request failed');
+      }
+
+      console.log('Name submitted:', name);
+
+      // Add your next steps here
+      // For example:
+      // updateLocalState(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      // This block will run regardless of success or failure
+      // You can perform any cleanup or final actions here
+    }
   };
 
   return (

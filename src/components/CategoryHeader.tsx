@@ -25,7 +25,7 @@ const Header = styled.div`
 export default function CategoryHeader() {
   const [selectedCategory, setSelectedCategory] = useRecoilState(CategoryState);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [selectedMemberId, setSelectedMemberId] = useRecoilState(MemberIdState);
+  const [memberId, setMemberId] = useRecoilState(MemberIdState);
   const handleGoBack = () => {
     window.history.back(); // 뒤로가기 기능 실행
   };
@@ -37,7 +37,7 @@ export default function CategoryHeader() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: categoryList } = useQuery<Icategory[]>(
     ['GetMyCategory', GetMyCategory],
-    () => GetMyCategory(selectedMemberId).then((response) => response.data),
+    () => GetMyCategory(memberId).then((response) => response.data),
     {
       onSuccess: (data) => {
         console.log('GetMyCategory', data);

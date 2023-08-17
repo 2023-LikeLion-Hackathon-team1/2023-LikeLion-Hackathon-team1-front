@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { IsLoginState, MemberIdState } from '../store/atom';
 import axios from 'axios';
+import { BASE_URL } from '../apis/Questions';
 
 export default function GoogleButton() {
   // eslint-disable-next-line no-unused-vars
@@ -19,20 +20,22 @@ export default function GoogleButton() {
     console.log(decodedToken);
 
     try {
-      const response = await axios.post('http://localhost:8080/members/google-login', {
-        googleAccountId: decodedToken.googleAccountId, // Google 계정 ID
-        imgUrl: decodedToken.imgUrl, // 유저 이미지 URL
-        code: decodedToken.code, // Google OAuth 코드
+      const response = await axios.post(`${BASE_URL}/members/google-login`, {
+        googleAccountId: decodedToken.email, // Google 계정 ID
+        imgUrl: decodedToken.picture, // 유저 이미지 URL
+        code: decodedToken.sub, // Google OAuth 코드
       });
 
-      if (response.data.isRegistered === true) {
-        localStorage.setItem('accessToken', response.data.tokens.accessToken);
-        localStorage.setItem('refreshToken', response.data.tokens.refreshToken);
+      if (response.status === 200) {
+        const memberId = response.data.memberId; // memberId 받아오기
 
-        history.push('/');
+        console.log('Member ID:', memberId);
         setLogin(true);
-        setMemberId(response.data.memberId);
+        setMemberId(memberId);
+        history.push('/first/signUp/addName');
+        // memberId를 다음 단계로 넘기거나 원하는 대로 활용할 수 있습니다.
       } else {
+        throw new Error('API request failed');
       }
     } catch (error) {
       console.error('Error during login:', error);

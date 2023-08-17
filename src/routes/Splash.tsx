@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 const Div = styled.div`
@@ -30,11 +32,27 @@ const Title = styled.div`
 `;
 
 export default function Splash() {
-  return (
-    <Div>
-      <Container>
-        <Title>CurioQuest</Title>
-      </Container>
-    </Div>
-  );
+  const [showSplash, setShowSplash] = useState(true);
+  const history = useHistory();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+      history.push('/first/signUp'); // Redirect to '/first/signUp' after 3 seconds
+    }, 3000); // 3 seconds
+
+    return () => clearTimeout(timer);
+  }, [history]);
+
+  if (showSplash) {
+    return (
+      <Div>
+        <Container>
+          <Title>CurioQuest</Title>
+        </Container>
+      </Div>
+    );
+  }
+
+  return null; // Don't render anything once showSplash is false
 }

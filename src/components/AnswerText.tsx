@@ -3,6 +3,11 @@ import TextField from '@mui/material/TextField';
 import { styled } from 'styled-components';
 import theme from '../theme';
 import { AiOutlineSend } from 'react-icons/ai';
+import { BASE_URL } from '../apis/Questions';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { RecoilState, useRecoilState } from 'recoil';
+import { MemberIdState } from '../store/atom';
 
 const AnswerType = styled.div`
   display: flex;
@@ -35,17 +40,27 @@ const Block = styled.p`
   background-color: white;
 `;
 
+interface RouteParams {
+  questionId: string;
+}
+
 export default function AnswerText() {
+  const { questionId } = useParams<RouteParams>();
   const [answer, setAnswer] = useState('');
+  const [memberId, setMemberId] = useRecoilState(MemberIdState);
 
   const handleAnswerChange = (event: any) => {
     setAnswer(event.target.value);
   };
 
-  const handleSendClick = () => {
+  const handleSendClick = async () => {
     // TODO: Perform the post operation using 'answer' variable
-    console.log('Posting:', answer);
-
+    const response = await axios.post(
+      `${BASE_URL}/answer/${questionId}/${memberId}`, // 템플릿 리터럴 사용
+      {
+        answer_sentence: answer, // answer 변수 사용
+      },
+    );
     // Clear the answer
     setAnswer('');
   };

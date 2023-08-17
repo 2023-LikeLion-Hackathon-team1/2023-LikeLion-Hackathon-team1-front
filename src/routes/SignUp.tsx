@@ -15,28 +15,43 @@ const Div = styled.div`
 
 const Container = styled.div`
   position: absolute;
-  top: 100px;
+  top: 150px;
   left: 50px;
-  width: 217px;
+  width: 300px;
   height: 55px;
 `;
 
 const Title = styled.div`
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: ${theme.palette.color.main};
+`;
+
+const SubTitle = styled.div`
+  font-size: 18px;
+  color: ${theme.palette.mono.gray2};
+  margin-bottom: 10px;
+`;
+
+const LoginButton = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  font-weight: 900;
-  background: linear-gradient(180deg, #2ce477, rgba(44, 228, 119, 0));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  bottom: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 export default function SignUp() {
   return (
     <Div>
       <Container>
-        <Title>서비스 소개</Title>
+        <Title>CurioQuest</Title>
+        <SubTitle> 하루 한 질문, </SubTitle>
+        <SubTitle> 더 나은 업무 능력을 위한 첫걸음 </SubTitle>
       </Container>
+      <LoginButton>
+        <GoogleButton />
+      </LoginButton>
     </Div>
   );
 }

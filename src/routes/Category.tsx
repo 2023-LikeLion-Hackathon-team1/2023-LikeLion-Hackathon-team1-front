@@ -4,9 +4,9 @@ import theme from '../theme';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import { GetAllCategory } from '../apis/Questions';
+import { BASE_URL, GetAllCategory } from '../apis/Questions';
 import { useRecoilState } from 'recoil';
-import { CategoryIdState, CategoryState } from '../store/atom';
+import { CategoryIdState, CategoryState, MemberIdState } from '../store/atom';
 
 interface CategoryButtonProps {
   isSelected: boolean;
@@ -116,7 +116,6 @@ const Count = styled.span`
 `;
 
 export default function Category() {
-  const member_id = 1; // TODO 임시로 1로 설정
   // const [isLoading, data] = useQuery<ICategories[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
@@ -125,6 +124,8 @@ export default function Category() {
   const [selectedCategory, setSelectedCategory] = useRecoilState(CategoryState);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [memberId, setMemberId] = useRecoilState(MemberIdState);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading, data: categoryList } = useQuery<BigCategory[]>(
@@ -145,30 +146,29 @@ export default function Category() {
     }
   };
 
-  const handleSubCategoryClick = (category: string, id: number) => {
+  const handleSubCategoryClick = (category: string, categoryId: number) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((item) => item !== category));
     } else {
       setSelectedCategories([...selectedCategories, category]);
     }
-    console.log(selectedCategories);
-    sendDataToServer(id);
+    console.log(categoryId, selectedCategories);
+    sendDataToServer(categoryId);
 
     setSelectedCategory(category);
-    setSelectedCategoryId(id);
+    setSelectedCategoryId(categoryId);
   };
 
-  const sendDataToServer = async (id: number) => {
+  const sendDataToServer = async (categoryId: number) => {
     try {
-      const response = await axios.get(`http://localhost:8080/category/like/${id}/${member_id}`);
+      const response = await axios.get(`${BASE_URL}/category/like/${categoryId}/${memberId}`);
       console.log('API response:', response.data);
       // Handle successful API response here
     } catch (error) {
       console.error('Error sending data to server:', error);
       // Handle error here
     }
-    // /category/like/{category_id}/{member_id}
-    console.log(`서버로 전송할 데이터: ${id}`);
+    console.log(`서버로 전송할 데이터: ${categoryId}`);
   };
 
   return (

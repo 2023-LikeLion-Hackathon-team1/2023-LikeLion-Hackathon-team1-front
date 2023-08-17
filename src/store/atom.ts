@@ -24,6 +24,6 @@ export const IsLoginState = atom({
 
 export const MemberIdState = atom({
   key: 'MemberIdState',
-  default: null,
+  default: 0,
   effects_UNSTABLE: [persistAtom],
 });

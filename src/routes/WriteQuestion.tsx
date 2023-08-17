@@ -86,6 +86,7 @@ export default function WriteQuestion() {
       .then((response) => console.log(response.data));
 
     history.push('/');
+    console.log('home?');
     return response;
   };
 
