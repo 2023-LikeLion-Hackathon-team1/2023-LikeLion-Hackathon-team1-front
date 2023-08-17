@@ -98,6 +98,7 @@ export default function QuestionDetail() {
       onSuccess: (data) => {
         console.log('GetAllCategory', data);
       },
+      refetchInterval: 500,
     },
   );
 
