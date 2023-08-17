@@ -175,8 +175,8 @@ export default function Category() {
     <Page>
       <Slide>
         <Container>
-          <Title>관심사를 취미를 선택해주세요</Title>
-          <SubTitle> 맞춤 카테고리를 형성하기 위함입니다. </SubTitle>
+          <Title>어떤 종류의 주제에 관심이 있으신가요?</Title>
+          <SubTitle> 여러분의 관심사를 이해하고, 맞춤형 콘텐츠를 제공하기 위한 것입니다. </SubTitle>
           <ButtonsContainer>
             {(categoryList as BigCategory[])?.map((bigCategory: BigCategory) => (
               <div key={bigCategory.big3_category_id}>
