@@ -3,10 +3,10 @@ import Divider from '@mui/material/Divider';
 import CategoryHeader from '../components/CategoryHeader';
 import { useEffect, useState } from 'react';
 import theme from '../theme';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
-import { CategoryIdState } from '../store/atom';
+import { CategoryIdState, MemberIdState } from '../store/atom';
 import { BASE_URL } from '../apis/Questions';
 
 const Form = styled.form`
@@ -73,21 +73,20 @@ export default function WriteQuestion() {
   const [content, setContent] = useState('');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategoryId, setSelectedCategoryId] = useRecoilState(CategoryIdState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [memberId, setMemberId] = useRecoilState(MemberIdState);
   // const [selectedImage, setSelectedImage] = useState<string | null>(null); // Specify the type for selectedImage
 
-  const subminQuestion = async () => {
-    const member_id = 1;
+  const submitQuestion = async () => {
     const response = await axios
-      .post(`${BASE_URL}/questions/${selectedCategoryId}/${member_id}`, {
+      .post(`${BASE_URL}/questions/${selectedCategoryId}/${memberId}`, {
+        // /questions/{category_id}/{questioner_member_id}
         questionTitle: title,
         questionContent: content,
         // 여기에 필요한 다른 데이터도 추가 가능
       })
       .then((response) => console.log(response.data));
-
-    history.push('/');
     console.log('home?');
-    return response;
   };
 
   useEffect(() => {
@@ -138,7 +137,9 @@ export default function WriteQuestion() {
             <CameraAltTwoToneIcon style={{ color: theme.palette.color.main }} />
           </label> */}
           <div />
-          <TextButton onClick={subminQuestion}> 등록 </TextButton>
+          <Link to="/">
+            <TextButton onClick={submitQuestion}> 등록 </TextButton>
+          </Link>
         </BottomBar>
       </Form>
     </>
