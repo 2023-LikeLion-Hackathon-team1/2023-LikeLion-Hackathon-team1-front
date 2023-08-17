@@ -63,6 +63,7 @@ export default function AnswerText() {
     );
     // Clear the answer
     setAnswer('');
+    return response;
   };
 
   return (
