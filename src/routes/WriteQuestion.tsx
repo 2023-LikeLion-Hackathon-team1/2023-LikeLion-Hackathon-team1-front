@@ -7,7 +7,6 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { CategoryIdState, MemberIdState } from '../store/atom';
-import { BASE_URL } from '../apis/Questions';
 
 const Form = styled.form`
   display: flex;
@@ -81,7 +80,7 @@ export default function WriteQuestion() {
   const submitQuestion = async () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const response = await axios
-      .post(`${BASE_URL}/questions/${selectedCategoryId}/${memberId}`, {
+      .post(`${process.env.BASE_URL}/questions/${selectedCategoryId}/${memberId}`, {
         // /questions/{category_id}/{questioner_member_id}
         questionTitle: title,
         questionContent: content,

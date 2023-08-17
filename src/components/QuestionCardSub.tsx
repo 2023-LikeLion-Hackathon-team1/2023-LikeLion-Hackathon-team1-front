@@ -1,9 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import { BsChat } from 'react-icons/bs';
-import { BiCircle } from 'react-icons/bi';
-import { FiBookmark } from 'react-icons/fi';
-import theme from '../theme';
 // import { GetBooked } from '../apis/Questions';
 // import { useRecoilState } from 'recoil';
 // import { MemberIdState } from '../store/atom';
@@ -78,24 +75,6 @@ const Content = styled.div`
   color: gray;
   margin-top: 5px;
   line-height: 1.5;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-`;
-
-const Icons = styled.div`
-  display: flex;
-  align-items: center;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  color: gray;
-  /* height: 20px; */
-  font-size: 12px;
 `;
 
 export default function QuestionCardSub({ question, isSummary }: QuestionCardProps) {

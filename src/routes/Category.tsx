@@ -4,7 +4,7 @@ import theme from '../theme';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import { BASE_URL, GetAllCategory } from '../apis/Questions';
+import { GetAllCategory } from '../apis/Questions';
 import { useRecoilState } from 'recoil';
 import { CategoryIdState, CategoryState, MemberIdState } from '../store/atom';
 
@@ -161,7 +161,7 @@ export default function Category() {
 
   const sendDataToServer = async (categoryId: number) => {
     try {
-      const response = await axios.get(`${BASE_URL}/category/like/${categoryId}/${memberId}`);
+      const response = await axios.get(`${process.env.BASE_URL}/category/like/${categoryId}/${memberId}`);
       console.log('API response:', response.data);
       // Handle successful API response here
     } catch (error) {

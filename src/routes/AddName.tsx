@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { MemberIdState } from '../store/atom';
 import axios from 'axios';
-import { BASE_URL } from '../apis/Questions';
 
 const Page = styled.div`
   position: relative;
@@ -89,7 +88,7 @@ export default function AddName() {
     event.preventDefault();
 
     try {
-      const response = await axios.patch(`${BASE_URL}/members/${memberId}/update-name`, {
+      const response = await axios.patch(`${process.env.BASE_URL}/members/${memberId}/update-name`, {
         newName: name,
       });
 

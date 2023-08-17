@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import { styled } from 'styled-components';
 import theme from '../theme';
 import { AiOutlineSend } from 'react-icons/ai';
-import { BASE_URL } from '../apis/Questions';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { RecoilState, useRecoilState } from 'recoil';
@@ -57,7 +56,7 @@ export default function AnswerText() {
   const handleSendClick = async () => {
     // TODO: Perform the post operation using 'answer' variable
     const response = await axios.post(
-      `${BASE_URL}/answer/${questionId}/${memberId}`, // 템플릿 리터럴 사용
+      `${process.env.BASE_URL}/answer/${questionId}/${memberId}`, // 템플릿 리터럴 사용
       {
         answer_sentence: answer, // answer 변수 사용
       },

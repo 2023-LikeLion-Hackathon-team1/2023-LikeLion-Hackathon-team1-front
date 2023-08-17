@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { IsLoginState, MemberIdState } from '../store/atom';
 import axios from 'axios';
-import { BASE_URL } from '../apis/Questions';
 
 export default function GoogleButton() {
   // eslint-disable-next-line no-unused-vars
@@ -20,7 +19,7 @@ export default function GoogleButton() {
     console.log(decodedToken);
 
     try {
-      const response = await axios.post(`${BASE_URL}/members/google-login`, {
+      const response = await axios.post(`${process.env.BASE_URL}/members/google-login`, {
         googleAccountId: decodedToken.email, // Google 계정 ID
         imgUrl: decodedToken.picture, // 유저 이미지 URL
         code: decodedToken.sub, // Google OAuth 코드
