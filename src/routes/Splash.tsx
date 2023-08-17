@@ -27,7 +27,7 @@ const Title = styled.div`
   left: 0;
   font-weight: 900;
   background: linear-gradient(180deg, #2ce477, rgba(44, 228, 119, 0));
-  /* -webkit-background-clip: text; */
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
 
