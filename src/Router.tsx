@@ -73,6 +73,7 @@
 // export default Router;
 
 import React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
@@ -105,6 +106,7 @@ const Center = styled.div`
 `;
 
 function Router() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isUserLoggedIn = useRecoilValue(IsLoginState);
 
   return (
