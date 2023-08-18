@@ -41,13 +41,13 @@ const SubTitle = styled.div`
   color: ${theme.palette.mono.gray3};
 `;
 
-export default function Category() {
+export default function Loading() {
   return (
     <Page>
       <Slide>
         <Container>
           <Title>잠시만 기다려주세요!</Title>
-          <SubTitle> lullu님만을 위한 질문 페이지를 보여드릴게요. </SubTitle>
+          {/* <SubTitle> lullu님만을 위한 질문 페이지를 보여드릴게요. </SubTitle> */}
         </Container>
       </Slide>
     </Page>

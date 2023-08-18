@@ -91,6 +91,7 @@ import AddName from './routes/AddName';
 import MyPage from './routes/MyPage';
 import { IsLoginState } from './store/atom';
 import BookMarkDetail from './routes/BookMarkDetail';
+import ChatGPT from './routes/ChatGPT';
 
 const Page = styled.div`
   display: flex;
@@ -151,6 +152,9 @@ function Router() {
               </Route>
               <Route exact path="/mypage">
                 <MyPage />
+              </Route>
+              <Route exact path="/gpt">
+                <ChatGPT />
               </Route>
             </>
             {/* ) : (
