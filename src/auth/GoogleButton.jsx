@@ -41,6 +41,11 @@ export default function GoogleButton() {
     } catch (error) {
       console.error('Error during login:', error);
     }
+
+    setLogin(true);
+    setMemberId(1);
+    console.log('Member ID:', memberId);
+    history.push('/first/signUp/addName');
   };
 
   return (

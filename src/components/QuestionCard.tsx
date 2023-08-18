@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { BsChat } from 'react-icons/bs';
 import { BiCircle } from 'react-icons/bi';
-import { FiBookmark } from 'react-icons/fi';
+
 import theme from '../theme';
+import PopUp from './PopUp';
 // import { GetBooked } from '../apis/Questions';
 // import { useRecoilState } from 'recoil';
 // import { MemberIdState } from '../store/atom';
@@ -102,7 +103,8 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
   // const [memberId, setMemberId] = useRecoilState(MemberIdState);
   const [timeAgo, setTimeAgo] = useState<string>('');
   const [isLiked, setIsLiked] = useState<boolean>(false); // TODO:: 좋아요 기능 구현
-  const [isBooked, setIsBooked] = useState<boolean>(false); // TODO:: 북마크 기능 구현
+
+  // const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -149,16 +151,18 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
     }
   };
 
-  const handleBookedClick = () => {
-    // Toggle the like status
-    setIsBooked(!isBooked);
+  // const handleBookedClick = () => {
+  //   // Toggle the like status
+  //   setIsBooked(!isBooked);
 
-    // Call your API here to handle like post
-    // Example: You can use the fetch function to make the API call
-    if (!isBooked) {
-      // GetBooked(, question.question_id, memberId);
-    }
-  };
+  //   setShowModal(!showModal); // 모달 표시 여부 토글
+
+  //   // Call your API here to handle like post
+  //   // Example: You can use the fetch function to make the API call
+  //   if (!isBooked) {
+  //     // GetBooked(, question.question_id, memberId);
+  //   }
+  // };
 
   console.log(question);
 
@@ -200,13 +204,16 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: '5px' }}>
             <BsChat size="16px" /> {question?.answer_num}
           </div>
-          <div style={{ display: 'flex', alignItems: 'flex-end' }} onClick={handleBookedClick}>
+          {/* <div style={{ display: 'flex', alignItems: 'flex-end' }} onClick={handleBookedClick}>
             {isSummary === false && (
               <FiBookmark size="16px" style={{ color: isBooked ? theme.palette.color.main : 'gray' }} />
             )}
-          </div>
+          </div> */}
+          <PopUp funding_id={1} />
         </Icons>
       </Bottom>
+      {/* <PopUp funding_id={1} /> */}
+      {/* <YesNoModal open={showModal} onClose={() => setShowModal(false)} /> */}
     </Card>
   );
 }

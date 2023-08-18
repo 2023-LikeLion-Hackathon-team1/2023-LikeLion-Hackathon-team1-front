@@ -161,7 +161,7 @@ export default function Category() {
 
   const sendDataToServer = async (categoryId: number) => {
     try {
-      const response = await axios.get(`${process.env.BASE_URL}/category/like/${categoryId}/${memberId}`);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/category/like/${categoryId}/${memberId}`);
       console.log('API response:', response.data);
       // Handle successful API response here
     } catch (error) {

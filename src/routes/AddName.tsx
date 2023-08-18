@@ -88,7 +88,7 @@ export default function AddName() {
     event.preventDefault();
 
     try {
-      const response = await axios.patch(`${process.env.BASE_URL}/members/${memberId}/update-name`, {
+      const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/members/${memberId}/update-name`, {
         newName: name,
       });
 

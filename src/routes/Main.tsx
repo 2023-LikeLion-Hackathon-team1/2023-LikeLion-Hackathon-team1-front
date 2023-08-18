@@ -126,6 +126,8 @@ export default function Main() {
       <Link to={`/category/${selectedCategoryId}/write/${memberId}`}>
         <FloatingButton />
       </Link>
+      {/* <PopUp funding_id={1} /> */}
+      {/* <YesNoModal /> */}
       <div style={{ height: '20px' }} />
       <Block />
       <MenuBar />

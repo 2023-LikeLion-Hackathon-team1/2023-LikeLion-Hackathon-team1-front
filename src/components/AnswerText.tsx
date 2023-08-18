@@ -6,7 +6,7 @@ import theme from '../theme';
 import { AiOutlineSend } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { RecoilState, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { MemberIdState } from '../store/atom';
 
 const AnswerType = styled.div`
@@ -56,7 +56,7 @@ export default function AnswerText() {
   const handleSendClick = async () => {
     // TODO: Perform the post operation using 'answer' variable
     const response = await axios.post(
-      `${process.env.BASE_URL}/answer/${questionId}/${memberId}`, // 템플릿 리터럴 사용
+      `${process.env.REACT_APP_BASE_URL}/answer/${questionId}/${memberId}`, // 템플릿 리터럴 사용
       {
         answer_sentence: answer, // answer 변수 사용
       },

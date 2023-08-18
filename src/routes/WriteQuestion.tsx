@@ -1,12 +1,13 @@
 import { styled } from 'styled-components';
 import Divider from '@mui/material/Divider';
-import CategoryHeader from '../components/CategoryHeader';
 import { useEffect, useState } from 'react';
 import theme from '../theme';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { CategoryIdState, MemberIdState } from '../store/atom';
+import Button from '@mui/material/Button';
 
 const Form = styled.form`
   display: flex;
@@ -77,17 +78,43 @@ export default function WriteQuestion() {
   const [memberId, setMemberId] = useRecoilState(MemberIdState);
   // const [selectedImage, setSelectedImage] = useState<string | null>(null); // Specify the type for selectedImage
 
+  // const submitQuestion = async () => {
+  //   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  //   // const response = await axios
+  //   //   .post(`${process.env.REACT_APP_BASE_URL}/questions/${selectedCategoryId}/${memberId}`, {
+  //   //     // /questions/{category_id}/{questioner_member_id}
+  //   //     questionTitle: title,
+  //   //     questionContent: content,
+  //   //     // 여기에 필요한 다른 데이터도 추가 가능
+  //   //   })
+  //   //   .then((response) => console.log(response.data));
+
+  //   // /api/v1/chat-gpt
+  //   console.log('submit!');
+  //   const response = await axios
+  //     .post(`${process.env.REACT_APP_BASE_URL}/api/v1/chat-gpt}`, {
+  //       // /questions/{category_id}/{questioner_member_id}
+  //       question: content,
+  //       // 여기에 필요한 다른 데이터도 추가 가능
+  //     })
+  //     .then((response) => console.log('log', response));
+
+  //   console.log('home?');
+  //   // return response;
+  // };
   const submitQuestion = async () => {
+    console.log('submit!');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const response = await axios
-      .post(`${process.env.BASE_URL}/questions/${selectedCategoryId}/${memberId}`, {
-        // /questions/{category_id}/{questioner_member_id}
-        questionTitle: title,
-        questionContent: content,
-        // 여기에 필요한 다른 데이터도 추가 가능
+      .post(`${process.env.REACT_APP_BASE_URL}/api/v1/chat-gpt`, {
+        question: 'swift 어려워',
       })
-      .then((response) => console.log(response.data));
+      .then((response) => console.log('log', response));
+
     console.log('home?');
+
+    // 상태 업데이트를 하지 않으므로 재랜더링이 발생하지 않습니다.
+    return null;
   };
 
   useEffect(() => {
@@ -119,13 +146,18 @@ export default function WriteQuestion() {
 
   return (
     <>
-      <CategoryHeader />
+      {/* <CategoryHeader /> */}
       <Form>
         <Divider light style={{ width: '100%', margin: '10px 0' }} />
         <TitleInput placeholder="제목" />
         <Divider light style={{ width: '100%' }} />
         <ContentInput placeholder="궁금한 질문을 이곳에 적어보세요." style={{ height: '50vh' }} />
         {/* {selectedImage && <SmallImg src={selectedImage} alt="Selected" />} */}
+
+        <Button variant="contained" onClick={submitQuestion}>
+          Contained
+        </Button>
+
         <BottomBar keyboardHeight={keyboardHeight}>
           {/* <label htmlFor="image-upload">
             <input
@@ -138,9 +170,9 @@ export default function WriteQuestion() {
             <CameraAltTwoToneIcon style={{ color: theme.palette.color.main }} />
           </label> */}
           <div />
-          <Link to="/">
-            <TextButton onClick={submitQuestion}> 등록 </TextButton>
-          </Link>
+          {/* <Link to="/"> */}
+          <TextButton onClick={submitQuestion}> 등록 </TextButton>
+          {/* </Link> */}
         </BottomBar>
       </Form>
     </>

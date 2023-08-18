@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// const REACT_APP_BASE_URL = 'http://27.96.134.196:8080';
+
 export const GetCateQuestion = async (categoryId: number, memberId: number) => {
   const response = await axios.get(
     `${process.env.REACT_APP_BASE_URL}/questions/questions-list-inCategory/${categoryId}/${memberId}`,
