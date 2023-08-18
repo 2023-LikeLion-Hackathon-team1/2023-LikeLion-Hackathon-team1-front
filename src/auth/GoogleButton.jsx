@@ -12,6 +12,8 @@ export default function GoogleButton() {
   // eslint-disable-next-line no-unused-vars
   const [memberId, setMemberId] = useRecoilState(MemberIdState);
 
+  // setLogin(true);
+
   let history = useHistory();
 
   const onSuccess = async (credentialResponse) => {
@@ -19,11 +21,16 @@ export default function GoogleButton() {
     console.log(decodedToken);
 
     try {
-      const response = await axios.post(`${process.env.BASE_URL}/members/google-login`, {
-        googleAccountId: decodedToken.email, // Google 계정 ID
-        imgUrl: decodedToken.picture, // 유저 이미지 URL
-        code: decodedToken.sub, // Google OAuth 코드
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/members/google-login`, {
+        googleAccountId: 'your_google_account_123',
+        code: 'your_google_authentication_code',
+        imageUrl: 'user.///dfdf',
       });
+      // {
+      //   googleAccountId: decodedToken.email, // Google 계정 ID
+      //   imgUrl: decodedToken.picture, // 유저 이미지 URL
+      //   code: decodedToken.sub, // Google OAuth 코드
+      // });
 
       if (response.status === 200) {
         const memberId = response.data.memberId; // memberId 받아오기
