@@ -124,36 +124,36 @@ function Router() {
             <Route exact path="/first/signUp/addName/category">
               <Category />
             </Route>
-            {isUserLoggedIn ? (
-              <>
-                <Route exact path="/">
-                  <Main />
-                </Route>
-                <Route exact path="/question/:questionId">
-                  <QuestionDetail />
-                </Route>
-                <Route exact path="/category/:categoryId/write/:userId">
-                  <WriteQuestion />
-                </Route>
-                <Route exact path="/category/:categoryId/search">
-                  <SearchCategory />
-                </Route>
-                <Route exact path="/alarm">
-                  <Alarm />
-                </Route>
-                <Route exact path="/bookmark">
-                  <Bookmark />
-                </Route>
-                <Route exact path="/bookmark/:bookmarkfoldId">
-                  <BookMarkDetail />
-                </Route>
-                <Route exact path="/mypage">
-                  <MyPage />
-                </Route>
-              </>
-            ) : (
+            {/* {isUserLoggedIn ? ( */}
+            <>
+              <Route exact path="/">
+                <Main />
+              </Route>
+              <Route exact path="/question/:questionId">
+                <QuestionDetail />
+              </Route>
+              <Route exact path="/category/:categoryId/write/:userId">
+                <WriteQuestion />
+              </Route>
+              <Route exact path="/category/:categoryId/search">
+                <SearchCategory />
+              </Route>
+              <Route exact path="/alarm">
+                <Alarm />
+              </Route>
+              <Route exact path="/bookmark">
+                <Bookmark />
+              </Route>
+              <Route exact path="/bookmark/:bookmarkfoldId">
+                <BookMarkDetail />
+              </Route>
+              <Route exact path="/mypage">
+                <MyPage />
+              </Route>
+            </>
+            {/* ) : (
               <Redirect to="/first" />
-            )}
+            )} */}
           </Center>
         </Page>
       </Switch>
