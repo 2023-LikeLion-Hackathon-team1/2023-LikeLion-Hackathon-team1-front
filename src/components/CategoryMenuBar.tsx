@@ -84,7 +84,7 @@ export default function CategoryMenuBar() {
   return (
     <>
       <CategoryMenuBarWrapper>
-        <FormControl sx={{ m: 1, minWidth: 'fit-content' }} size="small">
+        {/* <FormControl sx={{ m: 1, minWidth: 'fit-content' }} size="small">
           <Select
             labelId="demo-select-small-label"
             id="demo-select-small"
@@ -136,8 +136,7 @@ export default function CategoryMenuBar() {
               궁금해요
             </MenuItem>
           </Select>
-        </FormControl>
-
+        </FormControl> */}
         {(categoryList as Icategory[])?.map((category: Icategory) => (
           <CategoryButton
             key={category.category_id}

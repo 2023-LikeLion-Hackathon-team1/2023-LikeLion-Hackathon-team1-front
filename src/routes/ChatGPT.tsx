@@ -4,7 +4,7 @@ import theme from '../theme';
 import GPTCard from '../components/GPTCard';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { CategoryGPTIdState, MemberIdState, gptList } from '../store/atom';
+import { CategoryGPTIdState, MemberIdState, gptList, postContent, postTitle } from '../store/atom';
 import Loading from './Loading';
 import axios from 'axios';
 
@@ -85,13 +85,15 @@ export default function ChatGPT() {
   const [gptCateList, setGptCateList] = useRecoilState(gptList);
   const [selectGPTcategory, setSelectGPTcategory] = useRecoilState(CategoryGPTIdState);
   const [memberId, setMemberId] = useRecoilState(MemberIdState);
+  const [atomTitle, setAtomTitle] = useRecoilState(postTitle);
+  const [atomContent, setAtomContent] = useRecoilState(postContent);
 
   console.log(gptCateList);
   const handlePost = async () => {
     const response = await axios
       .post(`${process.env.REACT_APP_BASE_URL}/questions/${selectGPTcategory}/${memberId}`, {
-        // question: content,
-        // 여기에 필요한 다른 데이터도 추가 가능
+        questionTitle: atomTitle,
+        questionContent: atomContent,
       })
       .then((response) => console.log('log', response));
 
