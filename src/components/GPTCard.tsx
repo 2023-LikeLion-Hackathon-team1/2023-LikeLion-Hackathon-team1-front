@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import theme from '../theme';
 import { useRecoilState } from 'recoil';
 import { CategoryGPTIdState } from '../store/atom';
-import Category from '../routes/Loading';
 
 interface Igpt {
   num: number;
@@ -22,7 +21,6 @@ const Cate = styled.div`
 `;
 
 export default function GPTCard({ gptCategory }: { gptCategory: Igpt }) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectGPTcategory, setSelectGPTcategory] = useRecoilState(CategoryGPTIdState);
 
   const handleClick = (categoryGPTId: number) => {

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../theme';
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -34,11 +33,6 @@ const Slide = styled.div`
 const Title = styled.div`
   font-size: 22px;
   margin-bottom: 10px;
-`;
-
-const SubTitle = styled.div`
-  font-size: 16px;
-  color: ${theme.palette.mono.gray3};
 `;
 
 export default function Loading() {

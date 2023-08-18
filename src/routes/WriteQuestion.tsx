@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { styled } from 'styled-components';
 import Divider from '@mui/material/Divider';
 import { useEffect, useState } from 'react';
@@ -51,14 +52,6 @@ const BottomBar = styled.div<BottomBarProps>`
   padding: 20px 40px;
   height: 70px;
   border-top: 1px solid #ccc;
-`;
-
-const TextButton = styled.button`
-  display: flex;
-  align-items: center;
-  color: ${theme.palette.mono.gray2};
-  background-color: white;
-  border: none;
 `;
 
 interface BottomBarProps {

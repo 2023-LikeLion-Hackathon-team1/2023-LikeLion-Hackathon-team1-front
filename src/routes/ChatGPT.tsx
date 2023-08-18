@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { styled } from 'styled-components';
 import theme from '../theme';
 import GPTCard from '../components/GPTCard';
@@ -75,29 +76,6 @@ const SelectButton = styled.button`
   cursor: pointer;
 `;
 
-const gptCategorys = [
-  {
-    num: 7,
-    Name: 'Java',
-  },
-  {
-    num: 8,
-    Name: 'Python',
-  },
-  {
-    num: 10,
-    Name: 'Infra Structure',
-  },
-  {
-    num: 11,
-    Name: 'Database',
-  },
-  {
-    num: 22,
-    Name: '인퍼레이션',
-  },
-];
-
 interface Igpt {
   num: number;
   name: string;
@@ -108,7 +86,6 @@ export default function ChatGPT() {
   const [selectGPTcategory, setSelectGPTcategory] = useRecoilState(CategoryGPTIdState);
   const [memberId, setMemberId] = useRecoilState(MemberIdState);
 
-  console.log('?');
   console.log(gptCateList);
   const handlePost = async () => {
     const response = await axios
