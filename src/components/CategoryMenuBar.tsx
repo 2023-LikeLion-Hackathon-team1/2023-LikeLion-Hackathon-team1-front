@@ -139,11 +139,11 @@ export default function CategoryMenuBar() {
         </FormControl> */}
         {(categoryList as Icategory[])?.map((category: Icategory) => (
           <CategoryButton
-            key={category.category_id}
-            isSelected={selectedCategory === category.name}
-            onClick={() => handleCategoryClick(category.name, category.category_id)}
+            key={category?.category_id}
+            isSelected={selectedCategory === category?.name}
+            onClick={() => handleCategoryClick(category?.name, category?.category_id)}
           >
-            {category.name}
+            {category?.name}
           </CategoryButton>
         ))}
       </CategoryMenuBarWrapper>

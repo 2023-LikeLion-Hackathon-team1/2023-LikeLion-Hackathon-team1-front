@@ -13,7 +13,7 @@ export const CategoryState = atom({
 
 export const CategoryIdState = atom({
   key: 'CategoryIdState',
-  default: 101,
+  default: 1,
 });
 
 export const CategoryGPTIdState = atom({
