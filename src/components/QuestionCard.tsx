@@ -5,22 +5,19 @@ import { BiCircle } from 'react-icons/bi';
 
 import theme from '../theme';
 import PopUp from './PopUp';
-// import { GetBooked } from '../apis/Questions';
-// import { useRecoilState } from 'recoil';
-// import { MemberIdState } from '../store/atom';
 
 interface IQuestion {
-  questioner_image: string;
   question_id: number;
   category_id: number;
   questioner_id: number;
+  questioner_name: string;
+  questioner_image: string;
   question_title: string;
   question_content: string;
   question_liked_num: number;
   isLike_active: boolean;
   create_date: string;
   answer_num: number | null;
-  questioner_name: string;
   is_selection: boolean;
 }
 
@@ -31,7 +28,7 @@ interface QuestionCardProps {
 
 const Card = styled.div<{ isSummary: boolean }>`
   width: 90vw;
-  height: 145px;
+  /* height: 145px; */
   padding: 20px 20px;
   background-color: ${(props) => (props.isSummary ? 'rgba(255, 255, 255, 0.8)' : 'transparent')};
   box-shadow: ${(props) => (props.isSummary ? '0px 8px 15px rgba(128, 128, 128, 0.2)' : 'none')};
@@ -105,6 +102,7 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
   const [isLiked, setIsLiked] = useState<boolean>(false); // TODO:: 좋아요 기능 구현
 
   // const [showModal, setShowModal] = useState<boolean>(false);
+  console.log(question);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -130,26 +128,26 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
     setTimeAgo(timeAgoStr);
   }, [question.create_date]);
 
-  const handleLikeClick = () => {
-    // Toggle the like status
-    setIsLiked(!isLiked);
+  // const handleLikeClick = () => {
+  //   // Toggle the like status
+  //   setIsLiked(!isLiked);
 
-    // Call your API here to handle like post
-    // Example: You can use the fetch function to make the API call
-    if (!isLiked) {
-      fetch('your_api_endpoint_here', {
-        method: 'POST', // or 'GET' depending on your API
-        // ... (other necessary options)
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Handle the API response if needed
-        })
-        .catch((error) => {
-          // Handle errors if needed
-        });
-    }
-  };
+  //   // Call your API here to handle like post
+  //   // Example: You can use the fetch function to make the API call
+  //   if (!isLiked) {
+  //     fetch('your_api_endpoint_here', {
+  //       method: 'POST', // or 'GET' depending on your API
+  //       // ... (other necessary options)
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         // Handle the API response if needed
+  //       })
+  //       .catch((error) => {
+  //         // Handle errors if needed
+  //       });
+  //   }
+  // };
 
   // const handleBookedClick = () => {
   //   // Toggle the like status
@@ -196,7 +194,7 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
               color: isLiked ? theme.palette.color.main : 'gray',
               fontWeight: isLiked ? 'bold' : 'normal',
             }}
-            onClick={handleLikeClick}
+            // onClick={handleLikeClick}
           >
             <BiCircle size="16px" style={{ color: isLiked ? theme.palette.color.main : 'gray' }} />
             {question?.question_liked_num}
@@ -209,7 +207,7 @@ export default function QuestionCard({ question, isSummary }: QuestionCardProps)
               <FiBookmark size="16px" style={{ color: isBooked ? theme.palette.color.main : 'gray' }} />
             )}
           </div> */}
-          <PopUp funding_id={1} />
+          {/* <PopUp funding_id={1} /> */}
         </Icons>
       </Bottom>
       {/* <PopUp funding_id={1} /> */}

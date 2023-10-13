@@ -55,14 +55,14 @@ const Input = styled.input`
   padding: 8px;
   border: none;
   border-radius: 8px;
-  width: 100%;
+  width: 300px;
 `;
 
 const Result = styled.div`
   margin-top: 30px;
 `;
 
-const SelectButton = styled.button`
+export const SelectButton = styled.button`
   position: absolute;
   bottom: 10%;
   left: 50%;
