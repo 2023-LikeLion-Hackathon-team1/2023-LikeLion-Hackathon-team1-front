@@ -18,6 +18,7 @@ export const OneQuestion = async (questionId: number, memberId: number) => {
 
 export const GetAllCategory = async () => {
   const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/category/category-list`);
+  console.log(response);
   return response;
 };
 

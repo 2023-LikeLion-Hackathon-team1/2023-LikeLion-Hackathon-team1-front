@@ -134,7 +134,7 @@ export default function ChatGPT() {
             <SubTitle> 여러분의 관심사를 이해하고, 맞춤형 콘텐츠를 제공하기 위한 것입니다. </SubTitle>
             <CateContainer>
               {gptCateList === null ? (
-                <Loading /> // 로딩 상태를 표시할 컴포넌트를 넣어주세요
+                <></> //<Loading /> // 로딩 상태를 표시할 컴포넌트를 넣어주세요
               ) : (
                 (gptCateList as Igpt[])?.map((gpt: Igpt) => <GPTCard key={gpt?.num} gptCategory={gpt} />)
               )}

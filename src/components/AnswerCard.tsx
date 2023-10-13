@@ -32,6 +32,8 @@ const Card = styled.div`
 
 const Profile = styled.div`
   display: flex;
+
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
 `;
@@ -150,11 +152,13 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
   return (
     <Card>
       <Profile>
-        <ProfileImg src={answer?.answerer_image} />
-        <ProfileColumn>
-          <ProfileName>{answer?.answerer_name}</ProfileName>
-          <Time>{timeAgo}</Time>
-        </ProfileColumn>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: '5px' }}>
+          <ProfileImg src={answer?.answerer_image} />
+          <ProfileColumn>
+            <ProfileName>{answer?.answerer_name}</ProfileName>
+            <Time>{timeAgo}</Time>
+          </ProfileColumn>
+        </div>
         {answer?.isQuestioner_selection && <IsChooseMark> 채택 </IsChooseMark>}
       </Profile>
       <Content>{answer?.answer_sentence}</Content>

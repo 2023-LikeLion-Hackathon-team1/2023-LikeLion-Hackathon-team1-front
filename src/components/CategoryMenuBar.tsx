@@ -25,6 +25,7 @@ const CategoryMenuBarWrapper = styled.div`
   overflow-x: auto;
   width: 100%;
   align-items: center;
+  margin: 5px 10px;
 
   /* 스크롤바 스타일 */
   ::-webkit-scrollbar {
