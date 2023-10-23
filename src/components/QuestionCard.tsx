@@ -4,7 +4,7 @@ import { BsChat } from 'react-icons/bs';
 import { BiCircle } from 'react-icons/bi';
 
 import theme from '../theme';
-import PopUp from './PopUp';
+// import PopUp from './PopUp';
 
 interface IQuestion {
   question_id: number;
@@ -99,7 +99,7 @@ const Icons = styled.div`
 export default function QuestionCard({ question, isSummary }: QuestionCardProps) {
   // const [memberId, setMemberId] = useRecoilState(MemberIdState);
   const [timeAgo, setTimeAgo] = useState<string>('');
-  const [isLiked, setIsLiked] = useState<boolean>(false); // TODO:: 좋아요 기능 구현
+  const [isLiked] = useState<boolean>(false); // TODO:: 좋아요 기능 구현
 
   // const [showModal, setShowModal] = useState<boolean>(false);
   console.log(question);
