@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from '../theme';
-import GoogleButton from '../auth/GoogleButton';
+// import GoogleButton from '../auth/GoogleButton';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { IsLoginState } from '../store/atom';
